@@ -19,7 +19,9 @@ export default function Navigation() {
         justifyContent:  'space-between',
         paddingInline:   'var(--fib-34)',
         paddingBlock:    'var(--fib-21)',
-        background:      'transparent',
+        background:      'rgba(245, 240, 232, 0.92)',
+        backdropFilter:  'blur(6px)',
+        borderBottom:    '1px solid rgba(26, 24, 20, 0.07)',
       }}
     >
       {/* Links: Navigation in Inter */}
@@ -33,8 +35,9 @@ export default function Navigation() {
           textTransform: 'uppercase',
         }}
       >
-        <Link href="/geschichte">{t('history')}</Link>
-        <Link href="/kultur">{t('culture')}</Link>
+        <Link href="/" className="nav-link">{t('home')}</Link>
+        <Link href="/geschichte" className="nav-link">{t('history')}</Link>
+        <Link href="/kultur" className="nav-link">{t('culture')}</Link>
       </nav>
 
       {/* Rechts: Sprache + Logo */}

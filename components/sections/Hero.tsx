@@ -28,12 +28,12 @@ export default function Hero({ quote, intro, linkHistory, linkCulture }: HeroPro
           sizes="100vw"
           style={{ objectFit: 'cover', objectPosition: 'center 40%' }}
         />
-        {/* Subtiles Gradient-Overlay für Lesbarkeit */}
+        {/* Gradient-Overlay für Lesbarkeit */}
         <div
           style={{
             position:   'absolute',
             inset:      0,
-            background: 'linear-gradient(to bottom, rgba(26,24,20,0.35) 0%, rgba(26,24,20,0.15) 50%, rgba(26,24,20,0.6) 100%)',
+            background: 'linear-gradient(to bottom, rgba(26,24,20,0.55) 0%, rgba(26,24,20,0.3) 40%, rgba(26,24,20,0.82) 100%)',
           }}
         />
       </div>
@@ -82,7 +82,7 @@ export default function Hero({ quote, intro, linkHistory, linkCulture }: HeroPro
         </p>
 
         {/* CTA-Links */}
-        <div style={{ display: 'flex', gap: 'var(--fib-21)' }}>
+        <div style={{ display: 'flex', gap: 'var(--fib-21)', alignItems: 'center' }}>
           <Link
             href="/geschichte"
             style={{
@@ -91,8 +91,8 @@ export default function Hero({ quote, intro, linkHistory, linkCulture }: HeroPro
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
               color:         'var(--color-ground)',
-              borderBottom:  '1px solid rgba(245,240,232,0.5)',
-              paddingBottom: '2px',
+              borderBottom:  '1px solid rgba(245,240,232,0.9)',
+              paddingBottom: '3px',
             }}
           >
             {linkHistory}
@@ -104,8 +104,9 @@ export default function Hero({ quote, intro, linkHistory, linkCulture }: HeroPro
               fontSize:      'var(--fib-13)',
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color:         'rgba(245,240,232,0.65)',
-              paddingBottom: '2px',
+              color:         'rgba(245,240,232,0.75)',
+              borderBottom:  '1px solid rgba(245,240,232,0.35)',
+              paddingBottom: '3px',
             }}
           >
             {linkCulture}
