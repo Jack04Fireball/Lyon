@@ -1,0 +1,67 @@
+{
+  "Nav": {
+    "home": "Lyon",
+    "history": "Histoire",
+    "culture": "Culture & Événements"
+  },
+  "Hero": {
+    "quote": "Dans la confluence naît l'identité.",
+    "intro": "Lyon est née à la confluence du Rhône et de la Saône. Deux fleuves, deux ordres, une ville. Ici se rencontrent l'histoire et le présent, l'architecture et l'espace de vie, le silence et le mouvement.",
+    "linkHistory": "Découvrir l'histoire",
+    "linkCulture": "Culture & Événements"
+  },
+  "History": {
+    "title": "Histoire & Identité",
+    "subtitle": "Deux fleuves. Deux mille ans.",
+    "confluence": {
+      "epoch": "Avant la ville",
+      "title": "La Confluence",
+      "text": "Là où le Rhône et la Saône se rejoignent, Lugdunum est née. La confluence n'était pas un hasard — c'était une condition. L'eau a façonné la géographie, la géographie a façonné la ville, la ville a façonné l'identité.",
+      "quote": "Deux fleuves, une âme."
+    },
+    "roman": {
+      "epoch": "43 av. J.-C.",
+      "title": "La ville romaine",
+      "text": "Lugdunum devint la capitale des Gaules. Sur la colline de Fourvière s'élevèrent théâtres, temples et aqueducs. La ville grandit en hauteur et en étendue — ordonnée, puissante, durable.",
+      "quote": "Sur la colline commença l'histoire."
+    },
+    "renaissance": {
+      "epoch": "XVe – XVIe siècle",
+      "title": "Renaissance et imprimerie",
+      "text": "Lyon devint le centre européen de l'imprimerie et du commerce. Rabelais y écrivit. Des banquiers de toute l'Europe se retrouvaient aux foires. La ville s'ouvrit au monde.",
+      "quote": "Lyon était le monde en miniature."
+    },
+    "canuts": {
+      "epoch": "XVIIIe – XIXe siècle",
+      "title": "Les Canuts",
+      "text": "Les tisserands de soie de la Croix-Rousse ont forgé une culture propre. Dans d'étroits ateliers entre lumière et bruit naissaient les plus belles soieries d'Europe. Leurs révoltes de 1831 et 1834 furent les premières luttes ouvrières des temps modernes.",
+      "quote": "Vivre en travaillant ou mourir en combattant."
+    },
+    "modern": {
+      "epoch": "Aujourd'hui",
+      "title": "Lyon contemporaine",
+      "text": "La Métropole de Lyon est aujourd'hui l'une des villes les plus dynamiques d'Europe. Architecture, gastronomie, biotechnologie et culture convergent. La Fête des Lumières illumine la ville chaque décembre.",
+      "quote": "Lyon se réinvente sans cesse."
+    }
+  },
+  "Culture": {
+    "title": "Culture & Événements",
+    "subtitle": "Le programme de la ville.",
+    "filterAll": "Tout",
+    "filterFestival": "Festival",
+    "filterMuseum": "Musée",
+    "filterConcert": "Concert",
+    "filterTheater": "Théâtre",
+    "filterMonth": "Choisir un mois",
+    "close": "Fermer",
+    "location": "Lieu",
+    "date": "Date",
+    "category": "Catégorie"
+  },
+  "Footer": {
+    "city": "Lyon, France",
+    "tagline": "Dans la confluence naît l'identité.",
+    "history": "Histoire",
+    "culture": "Culture & Événements"
+  }
+}

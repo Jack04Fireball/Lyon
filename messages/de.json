@@ -1,0 +1,67 @@
+{
+  "Nav": {
+    "home": "Lyon",
+    "history": "Geschichte",
+    "culture": "Kultur & Events"
+  },
+  "Hero": {
+    "quote": "Im Zusammenfluss entsteht Identität.",
+    "intro": "Lyon liegt am Zusammenfluss von Rhône und Saône. Zwei Flüsse, zwei Ordnungen, eine Stadt. Hier begegnen sich Geschichte und Gegenwart, Architektur und Lebensraum, Stille und Bewegung.",
+    "linkHistory": "Geschichte entdecken",
+    "linkCulture": "Kultur & Events"
+  },
+  "History": {
+    "title": "Geschichte & Identität",
+    "subtitle": "Zwei Flüsse. Zweitausend Jahre.",
+    "confluence": {
+      "epoch": "Vor der Stadt",
+      "title": "Die Confluenz",
+      "text": "Wo Rhône und Saône sich vereinigen, entstand Lugdunum. Der Zusammenfluss war kein Zufall – er war Bedingung. Das Wasser formte die Geographie, die Geographie formte die Stadt, die Stadt formte die Identität.",
+      "quote": "Zwei Flüsse, eine Seele."
+    },
+    "roman": {
+      "epoch": "43 v. Chr.",
+      "title": "Die Römerstadt",
+      "text": "Lugdunum wurde zur Hauptstadt Galliens. Auf dem Fourvière-Hügel entstanden Theater, Tempel und Aquädukte. Die Stadt wuchs in die Höhe und in die Fläche – geordnet, mächtig, dauerhaft.",
+      "quote": "Auf dem Hügel begann die Geschichte."
+    },
+    "renaissance": {
+      "epoch": "15.–16. Jahrhundert",
+      "title": "Renaissance und Druckkunst",
+      "text": "Lyon wurde zum europäischen Zentrum des Buchdrucks und des Handels. Rabelais schrieb hier. Bankiers aus ganz Europa trafen sich auf den Jahrmärkten. Die Stadt öffnete sich der Welt.",
+      "quote": "Lyon war die Welt in Miniatur."
+    },
+    "canuts": {
+      "epoch": "18.–19. Jahrhundert",
+      "title": "Die Canuts",
+      "text": "Die Seidenweber der Croix-Rousse prägten eine eigene Kultur. In engen Werkstätten zwischen Licht und Lärm entstanden die feinsten Seidenstoffe Europas. Ihre Aufstände 1831 und 1834 waren die ersten Arbeiterkämpfe der Neuzeit.",
+      "quote": "Vivre en travaillant ou mourir en combattant."
+    },
+    "modern": {
+      "epoch": "Heute",
+      "title": "Das moderne Lyon",
+      "text": "Die Métropole de Lyon ist heute eine der dynamischsten Städte Europas. Architektur, Gastronomie, Biotechnologie und Kultur wachsen zusammen. Die Fête des Lumières erleuchtet jedes Jahr im Dezember die Stadt.",
+      "quote": "Lyon erfindet sich immer neu."
+    }
+  },
+  "Culture": {
+    "title": "Kultur & Events",
+    "subtitle": "Das Programm der Stadt.",
+    "filterAll": "Alle",
+    "filterFestival": "Festival",
+    "filterMuseum": "Museum",
+    "filterConcert": "Konzert",
+    "filterTheater": "Theater",
+    "filterMonth": "Monat wählen",
+    "close": "Schließen",
+    "location": "Ort",
+    "date": "Datum",
+    "category": "Kategorie"
+  },
+  "Footer": {
+    "city": "Lyon, Frankreich",
+    "tagline": "Im Zusammenfluss entsteht Identität.",
+    "history": "Geschichte",
+    "culture": "Kultur & Events"
+  }
+}

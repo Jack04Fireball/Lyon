@@ -1,0 +1,112 @@
+@import "tailwindcss";
+
+/* ─── Lyon Farbpalette ──────────────────────────────────── */
+:root {
+  --color-ground:     #F5F0E8;
+  --color-text:       #1A1814;
+  --color-river:      #4A6B8A;
+  --color-terracotta: #C4704A;
+  --color-ochre:      #B89650;
+  --color-stone:      #8C7B6B;
+
+  /* ─── Fibonacci-Raster (Desktop) ──────────────────── */
+  --fib-8:   0.5rem;
+  --fib-13:  0.8125rem;
+  --fib-21:  1.3125rem;
+  --fib-34:  2.125rem;
+  --fib-55:  3.4375rem;
+  --fib-89:  5.5625rem;
+  --fib-144: 9rem;
+  --fib-233: 14.5625rem;
+
+  /* ─── Geometrisches Raster (Desktop) ──────────────── */
+  --geo-cols:   12;
+  --geo-gutter: var(--fib-21);
+  --geo-margin: var(--fib-34);
+}
+
+/* ─── Tablet ────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  :root {
+    --geo-cols:   8;
+    --geo-gutter: var(--fib-13);
+    --geo-margin: var(--fib-21);
+    /* Aktive Fibonacci-Werte: --fib-8, --fib-13, --fib-21, --fib-34 */
+  }
+}
+
+/* ─── Mobile ────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  :root {
+    --geo-cols:   4;
+    --geo-gutter: var(--fib-8);
+    --geo-margin: var(--fib-13);
+    /* Aktive Fibonacci-Werte: --fib-8, --fib-13, --fib-21 */
+  }
+}
+
+/* ─── Tailwind v4 Theme-Extension ──────────────────────── */
+@theme inline {
+  /* Farben */
+  --color-ground:     var(--color-ground);
+  --color-text:       var(--color-text);
+  --color-river:      var(--color-river);
+  --color-terracotta: var(--color-terracotta);
+  --color-ochre:      var(--color-ochre);
+  --color-stone:      var(--color-stone);
+
+  /* Fibonacci-Spacing-Skala */
+  --spacing-fib-8:   var(--fib-8);
+  --spacing-fib-13:  var(--fib-13);
+  --spacing-fib-21:  var(--fib-21);
+  --spacing-fib-34:  var(--fib-34);
+  --spacing-fib-55:  var(--fib-55);
+  --spacing-fib-89:  var(--fib-89);
+  --spacing-fib-144: var(--fib-144);
+  --spacing-fib-233: var(--fib-233);
+
+  /* Schriften */
+  --font-spectral: var(--font-spectral-var), Georgia, serif;
+  --font-inter:    var(--font-inter-var), system-ui, sans-serif;
+}
+
+/* ─── Basis ────────────────────────────────────────────── */
+html {
+  background-color: var(--color-ground);
+  color:            var(--color-text);
+  font-family:      var(--font-inter);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--color-ground);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ─── Typografische Basis ──────────────────────────────── */
+h1, h2, h3 {
+  font-family: var(--font-spectral);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+p, li, td {
+  font-family: var(--font-inter);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
