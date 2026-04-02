@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Broschüre | Stadt Lyon</title>
+  <style>
+    :root {
+      --color-ground: #f5f0e8;
+      --color-text: #1a1814;
+      --color-river: #4a6b8a;
+      --color-terracotta: #8b3e1e;
+      --color-ochre: #876638;
+      --color-stone: #6b5a4e;
+      --line-soft: rgba(26, 24, 20, 0.14);
+      --line-strong: rgba(26, 24, 20, 0.28);
+    }
+
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: #e6dfd5;
+      color: var(--color-text);
+      font-family: Inter, "Avenir Next", "Segoe UI", sans-serif;
+    }
+
+    .page {
+      position: relative;
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto 10mm;
+      background: var(--color-ground);
+      overflow: hidden;
+      page-break-after: always;
+    }
+
+    .page:last-child {
+      page-break-after: auto;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      background-image:
+        linear-gradient(to right, transparent 0, transparent calc(20% - 0.5px), var(--line-soft) calc(20% - 0.5px), var(--line-soft) 20%, transparent 20%, transparent calc(40% - 0.5px), var(--line-soft) calc(40% - 0.5px), var(--line-soft) 40%, transparent 40%, transparent calc(60% - 0.5px), var(--line-soft) calc(60% - 0.5px), var(--line-soft) 60%, transparent 60%, transparent calc(80% - 0.5px), var(--line-soft) calc(80% - 0.5px), var(--line-soft) 80%, transparent 80%),
+        linear-gradient(to bottom, transparent 0, transparent calc(25% - 0.5px), var(--line-soft) calc(25% - 0.5px), var(--line-soft) 25%, transparent 25%, transparent calc(50% - 0.5px), var(--line-soft) calc(50% - 0.5px), var(--line-soft) 50%, transparent 50%, transparent calc(75% - 0.5px), var(--line-soft) calc(75% - 0.5px), var(--line-soft) 75%, transparent 75%);
+      opacity: 0.75;
+    }
+
+    .cover-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0.88) contrast(1.06);
+    }
+
+    .cover-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(26, 24, 20, 0.18) 0%, rgba(26, 24, 20, 0.72) 100%);
+      z-index: 1;
+    }
+
+    .cover-content {
+      position: absolute;
+      left: 14mm;
+      right: 14mm;
+      bottom: 16mm;
+      z-index: 3;
+      color: #f6f2ea;
+    }
+
+    .cover-content p {
+      margin: 0;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      font-size: 10pt;
+    }
+
+    .cover-content h1 {
+      margin: 6mm 0 3.5mm;
+      font-family: Spectral, "Iowan Old Style", "Times New Roman", serif;
+      font-size: 45pt;
+      font-weight: 500;
+      line-height: 0.94;
+      max-width: 9ch;
+      letter-spacing: -0.02em;
+    }
+
+    .cover-content .lead {
+      margin: 0;
+      max-width: 45ch;
+      font-size: 12pt;
+      line-height: 1.45;
+      letter-spacing: 0.01em;
+    }
+
+    .header-band {
+      border-bottom: 1px solid var(--line-strong);
+      padding: 10mm 14mm 7mm;
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-band p {
+      margin: 0;
+      font-size: 9pt;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--color-terracotta);
+    }
+
+    .header-band h2 {
+      margin: 2.5mm 0 0;
+      font-family: Spectral, "Iowan Old Style", "Times New Roman", serif;
+      font-size: 32pt;
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .content-grid {
+      position: relative;
+      z-index: 1;
+      padding: 9mm 14mm 12mm;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6mm;
+    }
+
+    .panel {
+      border: 1px solid var(--line-soft);
+      background: rgba(245, 240, 232, 0.85);
+      padding: 5mm;
+      min-height: 52mm;
+    }
+
+    .panel h3 {
+      margin: 0 0 2mm;
+      font-family: Spectral, "Iowan Old Style", "Times New Roman", serif;
+      font-size: 16pt;
+      font-weight: 500;
+      line-height: 1.16;
+    }
+
+    .panel p,
+    .panel li {
+      margin: 0;
+      font-size: 10.2pt;
+      color: var(--color-stone);
+      line-height: 1.52;
+    }
+
+    .timeline {
+      grid-column: span 2;
+      border: 1px solid var(--line-strong);
+      background: rgba(255, 255, 255, 0.22);
+      padding: 5mm 5mm 4mm;
+    }
+
+    .timeline h3 {
+      margin: 0 0 4mm;
+      font-family: Spectral, "Iowan Old Style", "Times New Roman", serif;
+      font-size: 17pt;
+      font-weight: 500;
+    }
+
+    .timeline-items {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 3mm;
+    }
+
+    .time-node {
+      border-left: 1px solid var(--line-strong);
+      padding-left: 2.5mm;
+      min-height: 26mm;
+    }
+
+    .time-node .year {
+      margin: 0 0 1mm;
+      font-size: 8.6pt;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-terracotta);
+    }
+
+    .time-node .title {
+      margin: 0;
+      font-size: 9.6pt;
+      line-height: 1.35;
+      color: var(--color-text);
+    }
+
+    .event-list {
+      margin: 2mm 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 2.8mm;
+    }
+
+    .event-list li {
+      border-bottom: 1px solid rgba(26, 24, 20, 0.14);
+      padding-bottom: 2.2mm;
+    }
+
+    .event-list strong {
+      display: block;
+      font-size: 10pt;
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: 0.8mm;
+    }
+
+    .event-list span {
+      font-size: 9.4pt;
+      color: var(--color-stone);
+      line-height: 1.38;
+    }
+
+    .contact-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 7mm;
+      padding: 10mm 14mm 14mm;
+      align-items: stretch;
+    }
+
+    .contact-card {
+      border: 1px solid var(--line-soft);
+      padding: 6mm;
+      background: rgba(245, 240, 232, 0.86);
+    }
+
+    .contact-card h3 {
+      margin: 0 0 2.8mm;
+      font-family: Spectral, "Iowan Old Style", "Times New Roman", serif;
+      font-size: 20pt;
+      font-weight: 500;
+      line-height: 1.1;
+    }
+
+    .contact-card p {
+      margin: 0;
+      font-size: 10.5pt;
+      line-height: 1.5;
+      color: var(--color-stone);
+    }
+
+    .contact-card .links {
+      margin-top: 3.5mm;
+      display: grid;
+      gap: 1.7mm;
+    }
+
+    .contact-card a {
+      color: var(--color-river);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(74, 107, 138, 0.45);
+      width: fit-content;
+      font-size: 10pt;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .image-panel {
+      border: 1px solid var(--line-soft);
+      overflow: hidden;
+      min-height: 122mm;
+    }
+
+    .image-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .small-note {
+      position: absolute;
+      left: 14mm;
+      right: 14mm;
+      bottom: 8mm;
+      padding-top: 3.5mm;
+      border-top: 1px solid var(--line-strong);
+      z-index: 3;
+      display: flex;
+      justify-content: space-between;
+      gap: 5mm;
+    }
+
+    .small-note p {
+      margin: 0;
+      font-size: 8.8pt;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--color-stone);
+    }
+
+    @media print {
+      body {
+        background: transparent;
+      }
+
+      .page {
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="page">
+    <img class="cover-image" src="../images/alasdair1907-lyon-7875644.jpg" alt="Blick über Lyon" />
+    <div class="cover-overlay"></div>
+    <div class="cover-content">
+      <p>Stadt Lyon | Offizielle Broschüre</p>
+      <h1>Lyon 2026</h1>
+      <p class="lead">Eine Stadt zwischen Flüssen, Geschichte und Zukunft. Diese Broschüre zeigt die zentralen Linien von Identität, Kultur und urbanem Leben.</p>
+    </div>
+  </section>
+
+  <section class="page">
+    <header class="header-band">
+      <p>Kapitel 1</p>
+      <h2>Geschichte als Fundament</h2>
+    </header>
+    <div class="content-grid">
+      <article class="panel">
+        <h3>Die Confluence</h3>
+        <p>Wo Rhône und Saône sich treffen, beginnt Lyon. Die Geografie bestimmte von Anfang an Handel, Bewegung und Stadtraum.</p>
+      </article>
+      <article class="panel">
+        <h3>Von Lugdunum zur Metropole</h3>
+        <p>Römische Infrastruktur, Renaissance-Druckkultur und das industrielle Erbe der Canuts formen bis heute den urbanen Charakter.</p>
+      </article>
+
+      <section class="timeline" aria-label="Historische Zeitleiste">
+        <h3>Zeitleiste</h3>
+        <div class="timeline-items">
+          <article class="time-node">
+            <p class="year">Vor der Stadt</p>
+            <p class="title">Confluence als Ursprung der Stadtentwicklung.</p>
+          </article>
+          <article class="time-node">
+            <p class="year">43 v. Chr.</p>
+            <p class="title">Lugdunum wird Hauptstadt Galliens.</p>
+          </article>
+          <article class="time-node">
+            <p class="year">15.–16. Jh.</p>
+            <p class="title">Renaissance, Handel und Buchdruck.</p>
+          </article>
+          <article class="time-node">
+            <p class="year">18.–19. Jh.</p>
+            <p class="title">Canuts prägen soziale und kulturelle Dynamik.</p>
+          </article>
+          <article class="time-node">
+            <p class="year">Heute</p>
+            <p class="title">Architektur, Wissenschaft und Kultur wachsen zusammen.</p>
+          </article>
+        </div>
+      </section>
+    </div>
+    <div class="small-note">
+      <p>Zwei Flüsse. Zweitausend Jahre.</p>
+      <p>Histoire &amp; Identité</p>
+    </div>
+  </section>
+
+  <section class="page">
+    <header class="header-band">
+      <p>Kapitel 2</p>
+      <h2>Kultur &amp; städtischer Rhythmus</h2>
+    </header>
+    <div class="content-grid">
+      <article class="panel">
+        <h3>Jahreshighlights</h3>
+        <ul class="event-list">
+          <li>
+            <strong>Fête des Lumières</strong>
+            <span>Lichtkunst im Dezember in allen Quartieren.</span>
+          </li>
+          <li>
+            <strong>Nuits de Fourvière</strong>
+            <span>Sommerfestival mit Theater, Konzert und Tanz.</span>
+          </li>
+          <li>
+            <strong>Festival Lumière</strong>
+            <span>Internationales Filmfestival in der Stadt der Brüder Lumière.</span>
+          </li>
+        </ul>
+      </article>
+
+      <article class="panel">
+        <h3>Institutionen</h3>
+        <ul class="event-list">
+          <li>
+            <strong>Musée des Confluences</strong>
+            <span>Ausstellungen zu Wissenschaft, Gesellschaft und Identität.</span>
+          </li>
+          <li>
+            <strong>Opéra de Lyon</strong>
+            <span>Zeitgenössische und klassische Produktionen im Jahresprogramm.</span>
+          </li>
+          <li>
+            <strong>Maison de la Danse</strong>
+            <span>Internationale Compagnien und lokale Uraufführungen.</span>
+          </li>
+        </ul>
+      </article>
+
+      <article class="panel" style="grid-column: span 2;">
+        <h3>Städtische Qualität</h3>
+        <p>Lyon setzt auf kurze Wege, öffentliche Räume am Wasser und eine lebendige Nachbarschaftskultur. Kulturangebote, historische Substanz und moderne Quartiere greifen räumlich ineinander.</p>
+      </article>
+    </div>
+    <div class="small-note">
+      <p>Das Programm der Stadt.</p>
+      <p>Culture &amp; Événements</p>
+    </div>
+  </section>
+
+  <section class="page">
+    <header class="header-band">
+      <p>Kapitel 3</p>
+      <h2>Kontakt &amp; Besuch</h2>
+    </header>
+    <div class="contact-grid">
+      <article class="contact-card">
+        <h3>Mairie de Lyon</h3>
+        <p>Place de la Comédie<br />69001 Lyon, France</p>
+        <p style="margin-top: 3mm;">Die Stadtverwaltung unterstützt Bürgerinnen und Bürger, Vereine, Kulturträger und Gäste mit zentralen Service- und Informationsangeboten.</p>
+        <div class="links">
+          <a href="https://www.lyon.fr">www.lyon.fr</a>
+          <a href="https://www.onlylyon.com">www.onlylyon.com</a>
+        </div>
+      </article>
+      <figure class="image-panel" style="margin: 0;">
+        <img src="../images/tanao68-lyon-7117498_1920.jpg" alt="Modernes Lyon" />
+      </figure>
+    </div>
+    <div class="small-note">
+      <p>Lyon, Frankreich</p>
+      <p>Im Zusammenfluss entsteht Identität.</p>
+    </div>
+  </section>
+</body>
+</html>
