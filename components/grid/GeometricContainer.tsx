@@ -23,8 +23,10 @@ export default function GeometricContainer({
       style={{
         ...(asGrid ? {
           display: 'grid',
-          gridTemplateColumns: 'repeat(var(--geo-cols), 1fr)',
-          gap: 'var(--geo-gutter)',
+          gridTemplateColumns: 'repeat(var(--geo-cols), minmax(0, 1fr))',
+          gridAutoRows: 'var(--geo-row)',
+          columnGap: 'var(--geo-gutter)',
+          rowGap: 'var(--geo-row-gap)',
           paddingInline: 'var(--geo-margin)',
         } : {}),
         ...style,

@@ -31,7 +31,7 @@ export default async function HomePage({ params }: Props) {
       />
 
       {/* 2. Teaserblock: Geschichte + Kultur (geometrisches Raster) */}
-      <section className="home-teasers">
+      <section className="geo-grid-2d home-teasers">
         {/* Geschichte-Teaser */}
         <Link
           href="/geschichte"

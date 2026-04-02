@@ -1,39 +1,182 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { buildGeometricColumnLines, buildGeometricRowLines } from '@/lib/grid/geometric'
+import { buildRepeatingFibLines } from '@/lib/grid/fibonacci'
 import { useGridOverlay } from './GridOverlayProvider'
-import { GEO_OVERLAY_COLOR, FIB_OVERLAY_COLOR, FIB_VALUES_OVERLAY } from './grid-config'
+import {
+  GEO_OVERLAY_COLOR,
+  FIB_OVERLAY_COLOR,
+  FIB_PATTERN_DESKTOP,
+  FIB_PATTERN_TABLET,
+  FIB_PATTERN_MOBILE,
+} from './grid-config'
 
-// Kumulierte Fibonacci-Positionen für horizontale Linien
-function buildFibLines(values: number[]): number[] {
-  const lines: number[] = []
-  let acc = 0
-  for (const v of values) {
-    acc += v
-    lines.push(acc)
-    if (acc > 4000) break // Viewport-Grenze
+interface OverlayLines {
+  geoVertical: number[]
+  geoHorizontal: number[]
+  fibVertical: number[]
+  fibHorizontal: number[]
+}
+
+function resolveCssVarValue(rawValue: string, styles: CSSStyleDeclaration, depth = 0): string {
+  if (depth > 6) return rawValue
+  const trimmed = rawValue.trim()
+  const match = /^var\((--[^,\s)]+)(?:,\s*(.+))?\)$/.exec(trimmed)
+  if (!match) return trimmed
+
+  const [, varName, fallback] = match
+  const resolved = styles.getPropertyValue(varName).trim()
+  if (resolved) {
+    return resolveCssVarValue(resolved, styles, depth + 1)
   }
-  return lines
+  if (fallback) {
+    return resolveCssVarValue(fallback, styles, depth + 1)
+  }
+  return trimmed
+}
+
+function cssLengthToPx(value: string, rootFontPx: number): number {
+  const trimmed = value.trim()
+  if (!trimmed) return 0
+
+  if (trimmed.endsWith('rem')) {
+    const n = Number.parseFloat(trimmed.replace('rem', ''))
+    return Number.isFinite(n) ? n * rootFontPx : 0
+  }
+  if (trimmed.endsWith('px')) {
+    const n = Number.parseFloat(trimmed.replace('px', ''))
+    return Number.isFinite(n) ? n : 0
+  }
+
+  const asNumber = Number.parseFloat(trimmed)
+  return Number.isFinite(asNumber) ? asNumber : 0
+}
+
+function readLengthVarPx(varName: string, styles: CSSStyleDeclaration, rootFontPx: number): number {
+  const raw = styles.getPropertyValue(varName).trim()
+  const resolved = resolveCssVarValue(raw, styles)
+  return cssLengthToPx(resolved, rootFontPx)
+}
+
+function readNumberVar(varName: string, styles: CSSStyleDeclaration, fallback: number): number {
+  const raw = styles.getPropertyValue(varName).trim()
+  const resolved = resolveCssVarValue(raw, styles)
+  const parsed = Number.parseInt(resolved, 10)
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback
 }
 
 export default function GridOverlay() {
   const { isVisible, toggle } = useGridOverlay()
-  const fibLines = buildFibLines(FIB_VALUES_OVERLAY)
-  const [geoCols, setGeoCols] = useState(12)
+  const [lines, setLines] = useState<OverlayLines>({
+    geoVertical: [],
+    geoHorizontal: [],
+    fibVertical: [],
+    fibHorizontal: [],
+  })
 
   useEffect(() => {
-    function updateGeoCols() {
-      const value = Number.parseInt(
-        getComputedStyle(document.documentElement).getPropertyValue('--geo-cols').trim(),
-        10,
-      )
-      setGeoCols(Number.isFinite(value) && value > 0 ? value : 12)
+    function updateLines() {
+      const styles = getComputedStyle(document.documentElement)
+      const rootFontPx = Number.parseFloat(styles.fontSize) || 16
+
+      const geoCols = readNumberVar('--geo-cols', styles, 12)
+      const geoGutterPx = readLengthVarPx('--geo-gutter', styles, rootFontPx)
+      const geoMarginPx = readLengthVarPx('--geo-margin', styles, rootFontPx)
+      const geoRowPx = readLengthVarPx('--geo-row', styles, rootFontPx)
+      const geoRowGapPx = readLengthVarPx('--geo-row-gap', styles, rootFontPx)
+
+      const fibPattern = geoCols >= 12
+        ? FIB_PATTERN_DESKTOP
+        : geoCols >= 8
+          ? FIB_PATTERN_TABLET
+          : FIB_PATTERN_MOBILE
+      const fibStepValuesPx = fibPattern.map(step => readLengthVarPx(`--fib-${step}`, styles, rootFontPx))
+      const width = window.innerWidth
+      const height = window.innerHeight
+
+      setLines({
+        geoVertical: buildGeometricColumnLines(width, geoCols, geoGutterPx, geoMarginPx),
+        geoHorizontal: buildGeometricRowLines(height, geoRowPx, geoRowGapPx, geoMarginPx),
+        fibVertical: buildRepeatingFibLines(
+          fibStepValuesPx,
+          Math.max(0, width - geoMarginPx),
+          geoMarginPx,
+        ),
+        fibHorizontal: buildRepeatingFibLines(
+          fibStepValuesPx,
+          Math.max(0, height - geoMarginPx),
+          geoMarginPx,
+        ),
+      })
     }
 
-    updateGeoCols()
-    window.addEventListener('resize', updateGeoCols)
-    return () => window.removeEventListener('resize', updateGeoCols)
+    updateLines()
+    window.addEventListener('resize', updateLines)
+    return () => window.removeEventListener('resize', updateLines)
   }, [])
+
+  function renderVerticalLines(values: number[], color: string, zIndex: number, dashed = false) {
+    return (
+      <div
+        aria-hidden
+        style={{
+          position: 'fixed',
+          inset: 0,
+          zIndex,
+          pointerEvents: 'none',
+          overflow: 'hidden',
+        }}
+      >
+        {values.map((x, i) => (
+          <div
+            key={`${zIndex}-vx-${i}`}
+            style={{
+              position: 'absolute',
+              top: 0,
+              bottom: 0,
+              left: `${x}px`,
+              width: '1px',
+              background: dashed ? 'transparent' : color,
+              borderLeft: dashed ? `1px dashed ${color}` : undefined,
+              opacity: dashed ? 0.45 : 0.65,
+            }}
+          />
+        ))}
+      </div>
+    )
+  }
+
+  function renderHorizontalLines(values: number[], color: string, zIndex: number, dashed = false) {
+    return (
+      <div
+        aria-hidden
+        style={{
+          position: 'fixed',
+          inset: 0,
+          zIndex,
+          pointerEvents: 'none',
+          overflow: 'hidden',
+        }}
+      >
+        {values.map((y, i) => (
+          <div
+            key={`${zIndex}-hy-${i}`}
+            style={{
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              top: `${y}px`,
+              height: '1px',
+              background: dashed ? 'transparent' : color,
+              borderTop: dashed ? `1px dashed ${color}` : undefined,
+              opacity: dashed ? 0.45 : 0.65,
+            }}
+          />
+        ))}
+      </div>
+    )
+  }
 
   return (
     <>
@@ -57,62 +200,18 @@ export default function GridOverlay() {
           transition:  'background 0.15s, color 0.15s',
         }}
       >
-        RASTER
+        RASTER 2D
       </button>
 
       {isVisible && (
         <>
-          {/* Layer A: Geometrisches Raster (grüne Spalten) */}
-          <div
-            aria-hidden
-            style={{
-              position:            'fixed',
-              inset:               0,
-              zIndex:              9990,
-              pointerEvents:       'none',
-              display:             'grid',
-              gridTemplateColumns: 'repeat(var(--geo-cols), 1fr)',
-              gap:                 'var(--geo-gutter)',
-              paddingInline:       'var(--geo-margin)',
-            }}
-          >
-            {Array.from({ length: geoCols }).map((_, i) => (
-              <div
-                key={i}
-                style={{
-                  background: `${GEO_OVERLAY_COLOR}18`,
-                  outline:    `1px solid ${GEO_OVERLAY_COLOR}88`,
-                }}
-              />
-            ))}
-          </div>
+          {/* Geometrisches Raster: vertikal + horizontal */}
+          {renderVerticalLines(lines.geoVertical, GEO_OVERLAY_COLOR, 9990)}
+          {renderHorizontalLines(lines.geoHorizontal, GEO_OVERLAY_COLOR, 9991)}
 
-          {/* Layer B: Fibonacci-Raster (blaue horizontale Linien) */}
-          <div
-            aria-hidden
-            style={{
-              position:      'fixed',
-              inset:         0,
-              zIndex:        9991,
-              pointerEvents: 'none',
-              overflow:      'hidden',
-            }}
-          >
-            {fibLines.map((pos, i) => (
-              <div
-                key={i}
-                style={{
-                  position:   'absolute',
-                  top:        `${pos}px`,
-                  left:       0,
-                  right:      0,
-                  height:     '1px',
-                  background: FIB_OVERLAY_COLOR,
-                  opacity:    0.55,
-                }}
-              />
-            ))}
-          </div>
+          {/* Fibonacci-Raster: vertikal + horizontal */}
+          {renderVerticalLines(lines.fibVertical, FIB_OVERLAY_COLOR, 9992, true)}
+          {renderHorizontalLines(lines.fibHorizontal, FIB_OVERLAY_COLOR, 9993, true)}
         </>
       )}
     </>

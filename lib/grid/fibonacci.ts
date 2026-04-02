@@ -18,3 +18,40 @@ export function cumulativeFibPositions(values: readonly number[]): number[] {
   }
   return positions
 }
+
+/**
+ * Wiederholt eine Fibonacci-Schrittfolge entlang einer Achse
+ * und gibt absolute Pixelpositionen zurück.
+ */
+export function buildRepeatingFibLines(
+  stepValuesPx: readonly number[],
+  axisLengthPx: number,
+  startOffsetPx = 0,
+): number[] {
+  const max = Number.isFinite(axisLengthPx) ? axisLengthPx : 0
+  const offset = Number.isFinite(startOffsetPx) ? startOffsetPx : 0
+  const steps = stepValuesPx.filter(v => Number.isFinite(v) && v > 0)
+
+  if (max <= 0 || steps.length === 0 || offset >= max) {
+    return []
+  }
+
+  const lines: number[] = [offset]
+  let acc = offset
+  let index = 0
+  let guard = 0
+
+  while (acc < max && guard < 2000) {
+    const step = steps[index % steps.length]
+    acc += step
+    if (acc >= max) break
+    lines.push(acc)
+    index += 1
+    guard += 1
+  }
+
+  lines.push(max)
+  const rounded = lines.map(v => Math.round(v * 100) / 100)
+  const unique = Array.from(new Set(rounded))
+  return unique.sort((a, b) => a - b)
+}

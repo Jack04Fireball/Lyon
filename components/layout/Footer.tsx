@@ -6,7 +6,7 @@ export default function Footer() {
   const t = useTranslations('Footer')
 
   return (
-    <footer className="footer-grid">
+    <footer className="geo-grid-2d footer-grid">
       {/* Logo + Tagline (geometrisches Raster: Spalten 1–4) */}
       <div className="footer-grid__brand">
         <Logo size={28} />

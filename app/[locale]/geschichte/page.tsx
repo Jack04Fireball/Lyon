@@ -19,41 +19,35 @@ export default async function GeschichtePage({ params }: Props) {
 
   return (
     <>
-      {/* Fibonacci-Raster: Seiten-Header */}
-      <section
-        style={{
-          paddingTop:    'calc(var(--fib-89) + var(--fib-55))',
-          paddingInline: 'var(--fib-55)',
-          paddingBottom: 'var(--fib-89)',
-          borderBottom:  '1px solid var(--color-text)',
-        }}
-      >
+      {/* 2D-Geometrie + Fibonacci-Rhythmus: Seiten-Header */}
+      <section className="geo-grid-2d page-header">
         <p
+          className="page-header__eyebrow"
           style={{
             fontFamily:    'var(--font-inter)',
             fontSize:      'var(--fib-13)',
             letterSpacing: '0.12em',
             textTransform: 'uppercase',
             color:         'var(--color-terracotta)',
-            marginBottom:  'var(--fib-21)',
           }}
         >
           Lyon
         </p>
         <h1
+          className="page-header__title"
           style={{
             fontFamily:    'var(--font-spectral)',
             fontSize:      'clamp(2.5rem, 6vw, var(--fib-89))',
             fontWeight:    300,
             lineHeight:    1.05,
             letterSpacing: '-0.03em',
-            maxWidth:      '16ch',
-            marginBottom:  'var(--fib-34)',
+            margin:        0,
           }}
         >
           {t('title')}
         </h1>
         <p
+          className="page-header__subtitle"
           style={{
             fontFamily:    'var(--font-inter)',
             fontSize:      'var(--fib-13)',

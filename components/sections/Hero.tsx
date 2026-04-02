@@ -39,21 +39,18 @@ export default function Hero({ quote, intro, linkHistory, linkCulture, imageAlt 
         />
       </div>
 
-      {/* Fibonacci-Raster: Inhalt unten links */}
-      <div
-        style={{
-          position:      'relative',
-          zIndex:        1,
-          minHeight:     '100svh',
-          display:       'flex',
-          flexDirection: 'column',
-          justifyContent: 'flex-end',
-          paddingInline: 'var(--fib-55)',
-          paddingBottom: 'var(--fib-89)',
-        }}
-      >
+      {/* 2D-Raster: Inhalt an Spalten + Reihen verankern */}
+      <div className="geo-grid-2d hero-layout">
+        <div
+          className="hero-content"
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
         {/* Zitat in Spectral */}
         <h1
+          className="hero-quote"
           style={{
             fontFamily:   'var(--font-spectral)',
             fontSize:     'clamp(2rem, 5vw, var(--fib-89))',
@@ -70,6 +67,7 @@ export default function Hero({ quote, intro, linkHistory, linkCulture, imageAlt 
 
         {/* Intro-Text in Inter */}
         <p
+          className="hero-intro"
           style={{
             fontFamily:   'var(--font-inter)',
             fontSize:     'var(--fib-13)',
@@ -83,7 +81,7 @@ export default function Hero({ quote, intro, linkHistory, linkCulture, imageAlt 
         </p>
 
         {/* CTA-Links */}
-        <div style={{ display: 'flex', gap: 'var(--fib-21)', alignItems: 'center' }}>
+        <div className="hero-cta" style={{ display: 'flex', gap: 'var(--fib-21)', alignItems: 'center' }}>
           <Link
             href="/geschichte"
             style={{
@@ -112,6 +110,7 @@ export default function Hero({ quote, intro, linkHistory, linkCulture, imageAlt 
           >
             {linkCulture}
           </Link>
+        </div>
         </div>
       </div>
     </section>
