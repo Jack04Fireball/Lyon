@@ -82,15 +82,7 @@ export default function EventsGrid({
   return (
     <div>
       {/* Fibonacci-Raster: Filter */}
-      <div
-        style={{
-          paddingInline: 'var(--fib-34)',
-          paddingBottom: 'var(--fib-34)',
-          display:       'flex',
-          flexWrap:      'wrap',
-          gap:           'var(--fib-8)',
-        }}
-      >
+      <div className="events-filter">
         {/* Kategorie-Filter */}
         {categories.map(cat => (
           <button
@@ -103,7 +95,7 @@ export default function EventsGrid({
         ))}
 
         {/* Monat-Filter */}
-        <div style={{ marginInlineStart: 'var(--fib-13)', display: 'flex', gap: 'var(--fib-8)', flexWrap: 'wrap' }}>
+        <div className="events-filter__months">
           <button
             onClick={() => setActiveMonth('all')}
             style={filterBtnStyle(activeMonth === 'all')}
@@ -123,21 +115,9 @@ export default function EventsGrid({
       </div>
 
       {/* Geometrisches Raster: Event-Karten */}
-      <div
-        style={{
-          display:             'grid',
-          gridTemplateColumns: 'repeat(var(--geo-cols), 1fr)',
-          gap:                 'var(--geo-gutter)',
-          paddingInline:       'var(--geo-margin)',
-        }}
-      >
+      <div className="geo-grid-2d events-grid">
         {filtered.map(event => (
-          <div
-            key={event.id}
-            style={{
-              gridColumn: `span ${Math.ceil(12 / Math.min(3, filtered.length > 0 ? 3 : 1))}`,
-            }}
-          >
+          <div key={event.id} className="events-grid__item">
             <EventCard
               event={event}
               locale={locale}
@@ -149,15 +129,7 @@ export default function EventsGrid({
       </div>
 
       {filtered.length === 0 && (
-        <div
-          style={{
-            paddingInline: 'var(--fib-34)',
-            paddingBlock:  'var(--fib-89)',
-            fontFamily:    'var(--font-inter)',
-            fontSize:      'var(--fib-13)',
-            color:         'var(--color-stone)',
-          }}
-        >
+        <div className="events-grid__empty">
           —
         </div>
       )}

@@ -44,7 +44,7 @@ export default function EventCard({ event, locale, categoryLabel, onClick }: Eve
       className="event-card"
     >
       {/* Geometrisches Raster: Bild */}
-      <div style={{ position: 'relative', aspectRatio: '4/3', overflow: 'hidden' }}>
+      <div className="event-card__media" style={{ position: 'relative', aspectRatio: '4/3', overflow: 'hidden' }}>
         <Image
           src={event.image}
           alt={title}
@@ -59,9 +59,9 @@ export default function EventCard({ event, locale, categoryLabel, onClick }: Eve
 
       {/* Fibonacci-Raster: Metadaten + Titel */}
       <div
+        className="event-card__meta"
         style={{
           paddingBlock:  'var(--fib-21)',
-          paddingInline: 0,
           borderTop:     `2px solid ${catColor}`,
         }}
       >

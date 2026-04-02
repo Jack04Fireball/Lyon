@@ -48,18 +48,11 @@ export default async function HomePage({ params }: Props) {
           </div>
           <div
             className="home-teaser__meta"
-            style={{
-              paddingBlock:   'var(--fib-21)',
-              borderTop:      '1px solid var(--color-text)',
-              display:        'flex',
-              justifyContent: 'space-between',
-              alignItems:     'baseline',
-            }}
           >
-            <span style={{ fontFamily: 'var(--font-spectral)', fontSize: 'var(--fib-21)', fontWeight: 400 }}>
+            <span className="home-teaser__title">
               {homeT('historyTeaserTitle')}
             </span>
-            <span style={{ fontFamily: 'var(--font-inter)', fontSize: 'var(--fib-13)', color: 'var(--color-stone)', letterSpacing: '0.1em' }}>→</span>
+            <span className="home-teaser__arrow">→</span>
           </div>
         </Link>
 
@@ -79,18 +72,11 @@ export default async function HomePage({ params }: Props) {
           </div>
           <div
             className="home-teaser__meta"
-            style={{
-              paddingBlock:   'var(--fib-21)',
-              borderTop:      '1px solid var(--color-text)',
-              display:        'flex',
-              justifyContent: 'space-between',
-              alignItems:     'baseline',
-            }}
           >
-            <span style={{ fontFamily: 'var(--font-spectral)', fontSize: 'var(--fib-21)', fontWeight: 400 }}>
+            <span className="home-teaser__title">
               {homeT('cultureTeaserTitle')}
             </span>
-            <span style={{ fontFamily: 'var(--font-inter)', fontSize: 'var(--fib-13)', color: 'var(--color-stone)', letterSpacing: '0.1em' }}>→</span>
+            <span className="home-teaser__arrow">→</span>
           </div>
         </Link>
       </section>

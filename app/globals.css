@@ -121,6 +121,15 @@ html {
   display: grid;
   grid-template-rows: minmax(0, 1fr) auto;
   height: 100%;
+  border: 1px solid rgba(26, 24, 20, 0.14);
+  background: var(--color-ground);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.home-teaser:hover {
+  border-color: rgba(26, 24, 20, 0.32);
+  box-shadow: 0 10px 24px rgba(26, 24, 20, 0.08);
+  transform: translateY(-2px);
 }
 
 .home-teaser__media {
@@ -129,8 +138,35 @@ html {
   min-height: calc((var(--geo-row) * 6) + (var(--geo-row-gap) * 5));
 }
 
+.home-teaser__media img {
+  transition: transform 0.5s ease;
+}
+
+.home-teaser:hover .home-teaser__media img {
+  transform: scale(1.02);
+}
+
 .home-teaser__meta {
   background: var(--color-ground);
+  padding-block: var(--fib-21);
+  border-top: 1px solid rgba(26, 24, 20, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-inline: var(--fib-13);
+}
+
+.home-teaser__title {
+  font-family: var(--font-spectral);
+  font-size: var(--fib-21);
+  font-weight: 400;
+}
+
+.home-teaser__arrow {
+  font-family: var(--font-inter);
+  font-size: var(--fib-13);
+  color: var(--color-stone);
+  letter-spacing: 0.1em;
 }
 
 .home-teaser--history {
@@ -178,6 +214,12 @@ html {
   grid-column: 2 / 9;
   grid-row: 8 / 15;
   max-width: var(--fib-610);
+  display: flex;
+  flex-direction: column;
+  padding: var(--fib-34);
+  border: 1px solid rgba(245, 240, 232, 0.22);
+  background: linear-gradient(180deg, rgba(26, 24, 20, 0.14) 0%, rgba(26, 24, 20, 0.36) 100%);
+  backdrop-filter: blur(2px);
 }
 
 .hero-quote {
@@ -189,8 +231,30 @@ html {
 }
 
 .hero-cta {
+  display: flex;
+  gap: var(--fib-21);
+  align-items: center;
   flex-wrap: wrap;
   row-gap: var(--fib-13);
+}
+
+.hero-cta__primary,
+.hero-cta__secondary {
+  font-family: var(--font-inter);
+  font-size: var(--fib-13);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding-bottom: 3px;
+}
+
+.hero-cta__primary {
+  color: var(--color-ground);
+  border-bottom: 1px solid rgba(245, 240, 232, 0.9);
+}
+
+.hero-cta__secondary {
+  color: rgba(245, 240, 232, 0.75);
+  border-bottom: 1px solid rgba(245, 240, 232, 0.35);
 }
 
 .page-header {
@@ -223,6 +287,62 @@ html {
   display: flex;
   flex-direction: column;
   gap: 0;
+  border: 1px solid rgba(26, 24, 20, 0.12);
+  background: var(--color-ground);
+  transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.event-card:hover {
+  border-color: rgba(26, 24, 20, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(26, 24, 20, 0.08);
+}
+
+.event-card__media {
+  overflow: hidden;
+}
+
+.event-card__media img {
+  transition: transform 0.35s ease;
+}
+
+.event-card:hover .event-card__media img {
+  transform: scale(1.03);
+}
+
+.event-card__meta {
+  padding-inline: var(--fib-13);
+}
+
+.events-filter {
+  padding-inline: var(--fib-34);
+  padding-bottom: var(--fib-34);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fib-8);
+}
+
+.events-filter__months {
+  margin-inline-start: var(--fib-13);
+  display: flex;
+  gap: var(--fib-8);
+  flex-wrap: wrap;
+}
+
+.events-grid {
+  align-items: start;
+}
+
+.events-grid__item {
+  grid-column: span 4;
+}
+
+.events-grid__empty {
+  padding-inline: var(--fib-34);
+  padding-block: var(--fib-89);
+  font-family: var(--font-inter);
+  font-size: var(--fib-13);
+  color: var(--color-stone);
 }
 
 .event-card:focus-visible {
@@ -271,6 +391,7 @@ img {
     grid-column: 1 / -1;
     grid-row: 8 / 14;
     max-width: var(--fib-377);
+    padding: var(--fib-21);
   }
 
   .page-header__eyebrow,
@@ -305,6 +426,10 @@ img {
     min-height: calc((var(--geo-row) * 4) + (var(--geo-row-gap) * 3));
   }
 
+  .events-grid__item {
+    grid-column: span 4;
+  }
+
   .footer-grid__brand,
   .footer-grid__city,
   .footer-grid__links {
@@ -322,6 +447,7 @@ img {
     grid-column: 1 / -1;
     grid-row: 8 / 13;
     max-width: none;
+    padding: var(--fib-21);
   }
 
   .hero-quote {
@@ -356,5 +482,17 @@ img {
 
   .home-teaser__media {
     min-height: calc((var(--geo-row) * 5) + (var(--geo-row-gap) * 4));
+  }
+
+  .events-filter {
+    padding-inline: var(--fib-21);
+  }
+
+  .events-filter__months {
+    margin-inline-start: 0;
+  }
+
+  .events-grid__item {
+    grid-column: span 4;
   }
 }
