@@ -13,48 +13,17 @@ export default function LanguageToggle() {
   }
 
   return (
-    <div
-      style={{
-        display:    'flex',
-        gap:        'var(--fib-8)',
-        fontFamily: 'var(--font-inter)',
-        fontSize:   'var(--fib-13)',
-        letterSpacing: '0.1em',
-        textTransform: 'uppercase',
-      }}
-    >
+    <div className="lang-toggle">
       <button
         onClick={() => switchLocale('de')}
-        style={{
-          background: 'none',
-          border:     'none',
-          cursor:     'pointer',
-          fontFamily: 'inherit',
-          fontSize:   'inherit',
-          letterSpacing: 'inherit',
-          textTransform: 'inherit',
-          color:      locale === 'de' ? 'var(--color-text)' : 'var(--color-stone)',
-          fontWeight: locale === 'de' ? 600 : 400,
-          padding:    0,
-        }}
+        className={`lang-toggle__btn${locale === 'de' ? ' is-active' : ''}`}
       >
         DE
       </button>
-      <span style={{ color: 'var(--color-stone)', userSelect: 'none' }}>/</span>
+      <span className="lang-toggle__sep">/</span>
       <button
         onClick={() => switchLocale('fr')}
-        style={{
-          background: 'none',
-          border:     'none',
-          cursor:     'pointer',
-          fontFamily: 'inherit',
-          fontSize:   'inherit',
-          letterSpacing: 'inherit',
-          textTransform: 'inherit',
-          color:      locale === 'fr' ? 'var(--color-text)' : 'var(--color-stone)',
-          fontWeight: locale === 'fr' ? 600 : 400,
-          padding:    0,
-        }}
+        className={`lang-toggle__btn${locale === 'fr' ? ' is-active' : ''}`}
       >
         FR
       </button>

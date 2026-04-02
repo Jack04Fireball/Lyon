@@ -88,10 +88,47 @@ html {
 }
 
 /* ─── Navigation-Links ─────────────────────────────────── */
+.nav-shell {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: var(--geo-margin);
+  padding-block: var(--fib-21);
+  background: rgba(245, 240, 232, 0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(26, 24, 20, 0.07);
+}
+
+.nav-primary {
+  display: flex;
+  gap: var(--fib-34);
+  font-family: var(--font-inter);
+  font-size: var(--fib-13);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.nav-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--fib-21);
+}
+
+.nav-logo {
+  display: inline-flex;
+  line-height: 0;
+}
+
 .nav-link {
   color:      var(--color-text);
   opacity:    0.55;
   transition: opacity 0.15s;
+  white-space: nowrap;
 }
 .nav-link:hover {
   opacity: 1;
@@ -188,12 +225,12 @@ html {
 }
 
 .footer-grid__brand {
-  grid-column: 1 / 4;
+  grid-column: 1 / 5;
   grid-row: 1 / 6;
 }
 
 .footer-grid__city {
-  grid-column: 5 / 8;
+  grid-column: 5 / 9;
   grid-row: 2 / 5;
 }
 
@@ -211,23 +248,22 @@ html {
 }
 
 .hero-content {
-  grid-column: 2 / 9;
+  grid-column: 1 / 9;
   grid-row: 8 / 15;
   max-width: var(--fib-610);
   display: flex;
   flex-direction: column;
-  padding: var(--fib-34);
-  border: 1px solid rgba(245, 240, 232, 0.22);
-  background: linear-gradient(180deg, rgba(26, 24, 20, 0.14) 0%, rgba(26, 24, 20, 0.36) 100%);
-  backdrop-filter: blur(2px);
+  padding: 0;
 }
 
 .hero-quote {
   margin-top: 0;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.35);
 }
 
 .hero-intro {
   margin-top: 0;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.3);
 }
 
 .hero-cta {
@@ -255,6 +291,39 @@ html {
 .hero-cta__secondary {
   color: rgba(245, 240, 232, 0.75);
   border-bottom: 1px solid rgba(245, 240, 232, 0.35);
+}
+
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--fib-8);
+  font-family: var(--font-inter);
+  font-size: var(--fib-13);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.lang-toggle__btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: var(--color-stone);
+  font-weight: 400;
+  padding: 0;
+}
+
+.lang-toggle__btn.is-active {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.lang-toggle__sep {
+  color: var(--color-stone);
+  user-select: none;
 }
 
 .page-header {
@@ -315,7 +384,7 @@ html {
 }
 
 .events-filter {
-  padding-inline: var(--fib-34);
+  padding-inline: var(--geo-margin);
   padding-bottom: var(--fib-34);
   display: flex;
   flex-wrap: wrap;
@@ -391,7 +460,6 @@ img {
     grid-column: 1 / -1;
     grid-row: 8 / 14;
     max-width: var(--fib-377);
-    padding: var(--fib-21);
   }
 
   .page-header__eyebrow,
@@ -439,6 +507,50 @@ img {
 }
 
 @media (max-width: 640px) {
+  .nav-shell {
+    padding-inline: var(--fib-13);
+    padding-block: var(--fib-13);
+  }
+
+  .nav-primary {
+    gap: var(--fib-13);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+  }
+
+  .nav-link--home {
+    display: none;
+  }
+
+  .nav-link--culture {
+    max-width: 11ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .nav-meta {
+    gap: var(--fib-13);
+  }
+
+  .nav-logo svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .lang-toggle {
+    gap: 4px;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    border: 1px solid rgba(26, 24, 20, 0.16);
+    border-radius: 999px;
+    padding: 2px 6px;
+    background: rgba(245, 240, 232, 0.88);
+  }
+
+  .lang-toggle__sep {
+    display: none;
+  }
+
   .hero-layout {
     padding-block: var(--fib-34);
   }
@@ -447,7 +559,6 @@ img {
     grid-column: 1 / -1;
     grid-row: 8 / 13;
     max-width: none;
-    padding: var(--fib-21);
   }
 
   .hero-quote {
@@ -482,10 +593,6 @@ img {
 
   .home-teaser__media {
     min-height: calc((var(--geo-row) * 5) + (var(--geo-row-gap) * 4));
-  }
-
-  .events-filter {
-    padding-inline: var(--fib-21);
   }
 
   .events-filter__months {

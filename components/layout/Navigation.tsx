@@ -1,50 +1,28 @@
+'use client'
+
 import { useTranslations } from 'next-intl'
-import { Link } from '@/lib/i18n/navigation'
+import { Link, usePathname } from '@/lib/i18n/navigation'
 import Logo from './Logo'
 import LanguageToggle from './LanguageToggle'
 
 export default function Navigation() {
-  const t = useTranslations('Nav')
+  const t        = useTranslations('Nav')
+  const pathname = usePathname()
 
   return (
-    <header
-      style={{
-        position:        'fixed',
-        top:             0,
-        left:            0,
-        right:           0,
-        zIndex:          100,
-        display:         'flex',
-        alignItems:      'center',
-        justifyContent:  'space-between',
-        paddingInline:   'var(--fib-34)',
-        paddingBlock:    'var(--fib-21)',
-        background:      'rgba(245, 240, 232, 0.92)',
-        backdropFilter:  'blur(6px)',
-        borderBottom:    '1px solid rgba(26, 24, 20, 0.07)',
-      }}
-    >
+    <header className="nav-shell">
       {/* Links: Navigation in Inter */}
-      <nav
-        style={{
-          display:       'flex',
-          gap:           'var(--fib-34)',
-          fontFamily:    'var(--font-inter)',
-          fontSize:      'var(--fib-13)',
-          letterSpacing: '0.1em',
-          textTransform: 'uppercase',
-        }}
-      >
-        <Link href="/" className="nav-link">{t('home')}</Link>
-        <Link href="/geschichte" className="nav-link">{t('history')}</Link>
-        <Link href="/kultur" className="nav-link">{t('culture')}</Link>
+      <nav className="nav-primary">
+        <Link href="/" className={`nav-link nav-link--home${pathname === '/' ? ' nav-link--active' : ''}`}>{t('home')}</Link>
+        <Link href="/geschichte" className={`nav-link${pathname === '/geschichte' ? ' nav-link--active' : ''}`}>{t('history')}</Link>
+        <Link href="/kultur" className={`nav-link nav-link--culture${pathname === '/kultur' ? ' nav-link--active' : ''}`}>{t('culture')}</Link>
       </nav>
 
       {/* Rechts: Sprache + Logo */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--fib-21)' }}>
+      <div className="nav-meta">
         <LanguageToggle />
-        <Link href="/" aria-label={t('home')}>
-          <Logo size={32} />
+        <Link href="/" aria-label={t('home')} className="nav-logo">
+          <Logo size={30} />
         </Link>
       </div>
     </header>
