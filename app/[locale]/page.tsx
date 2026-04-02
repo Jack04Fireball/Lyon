@@ -37,7 +37,7 @@ export default async function HomePage({ params }: Props) {
           href="/geschichte"
           className="home-teaser home-teaser--history"
         >
-          <div style={{ aspectRatio: '3/2', position: 'relative', overflow: 'hidden' }}>
+          <div className="home-teaser__media">
             <Image
               src="/images/alasdair1907-lyon-7875644.jpg"
               alt={homeT('historyTeaserAlt')}
@@ -47,6 +47,7 @@ export default async function HomePage({ params }: Props) {
             />
           </div>
           <div
+            className="home-teaser__meta"
             style={{
               paddingBlock:   'var(--fib-21)',
               borderTop:      '1px solid var(--color-text)',
@@ -67,7 +68,7 @@ export default async function HomePage({ params }: Props) {
           href="/kultur"
           className="home-teaser home-teaser--culture"
         >
-          <div style={{ aspectRatio: '3/2', position: 'relative', overflow: 'hidden' }}>
+          <div className="home-teaser__media">
             <Image
               src="/images/ludo-photos-abstract-4124262_1920.jpg"
               alt={homeT('cultureTeaserAlt')}
@@ -77,6 +78,7 @@ export default async function HomePage({ params }: Props) {
             />
           </div>
           <div
+            className="home-teaser__meta"
             style={{
               paddingBlock:   'var(--fib-21)',
               borderTop:      '1px solid var(--color-text)',

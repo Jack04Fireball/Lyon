@@ -52,6 +52,16 @@ export function buildRepeatingFibLines(
 
   lines.push(max)
   const rounded = lines.map(v => Math.round(v * 100) / 100)
-  const unique = Array.from(new Set(rounded))
-  return unique.sort((a, b) => a - b)
+  const unique = Array.from(new Set(rounded)).sort((a, b) => a - b)
+
+  // Zu dichte Linien wirken wie ein "Band" statt Raster.
+  // Deshalb hier eine minimale Distanz zwischen benachbarten Linien.
+  const minGapPx = 4
+  const cleaned: number[] = []
+  for (const line of unique) {
+    if (cleaned.length === 0 || line - cleaned[cleaned.length - 1] >= minGapPx) {
+      cleaned.push(line)
+    }
+  }
+  return cleaned
 }

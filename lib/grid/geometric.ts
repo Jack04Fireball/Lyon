@@ -17,7 +17,7 @@ function uniqueSorted(values: number[]): number[] {
 
 /**
  * Vertikale Linien für ein Spaltenraster.
- * Liefert linke/rechte Kanten aller Spalten innerhalb der Margins.
+ * Liefert die Startkanten der Spalten plus die rechte Abschlusskante.
  */
 export function buildGeometricColumnLines(
   viewportWidthPx: number,
@@ -38,8 +38,7 @@ export function buildGeometricColumnLines(
 
   for (let i = 0; i < clampedCols; i += 1) {
     const start = clampedMargin + (i * (colWidth + clampedGutter))
-    const end = start + colWidth
-    lines.push(start, end)
+    lines.push(start)
   }
 
   lines.push(width - clampedMargin)
@@ -48,7 +47,7 @@ export function buildGeometricColumnLines(
 
 /**
  * Horizontale Linien für ein Zeilenraster.
- * Arbeitet mit wiederholten Zeilen + Gutter innerhalb der Margins.
+ * Liefert die Startkanten der Zeilen plus die untere Abschlusskante.
  */
 export function buildGeometricRowLines(
   viewportHeightPx: number,
@@ -65,18 +64,14 @@ export function buildGeometricRowLines(
   if (clampedRow <= 0 || max <= clampedMargin) return []
 
   const lines: number[] = [clampedMargin]
+  const step = clampedRow + clampedRowGap
   let cursor = clampedMargin
   let guard = 0
 
   while (cursor < max && guard < 400) {
-    const rowEnd = cursor + clampedRow
-    if (rowEnd >= max) break
-    lines.push(rowEnd)
-
-    const nextStart = rowEnd + clampedRowGap
-    if (nextStart >= max) break
-    lines.push(nextStart)
-    cursor = nextStart
+    cursor += step
+    if (cursor >= max) break
+    lines.push(cursor)
     guard += 1
   }
 

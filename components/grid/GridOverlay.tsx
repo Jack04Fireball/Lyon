@@ -19,6 +19,8 @@ interface OverlayLines {
   fibHorizontal: number[]
 }
 
+const DEVICE_PIXEL_RATIO_FALLBACK = 1
+
 function resolveCssVarValue(rawValue: string, styles: CSSStyleDeclaration, depth = 0): string {
   if (depth > 6) return rawValue
   const trimmed = rawValue.trim()
@@ -64,6 +66,11 @@ function readNumberVar(varName: string, styles: CSSStyleDeclaration, fallback: n
   const resolved = resolveCssVarValue(raw, styles)
   const parsed = Number.parseInt(resolved, 10)
   return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback
+}
+
+function snapToDevicePixel(value: number): number {
+  const dpr = window.devicePixelRatio || DEVICE_PIXEL_RATIO_FALLBACK
+  return Math.round(value * dpr) / dpr
 }
 
 export default function GridOverlay() {
@@ -128,21 +135,26 @@ export default function GridOverlay() {
           overflow: 'hidden',
         }}
       >
-        {values.map((x, i) => (
-          <div
-            key={`${zIndex}-vx-${i}`}
-            style={{
-              position: 'absolute',
-              top: 0,
-              bottom: 0,
-              left: `${x}px`,
-              width: '1px',
-              background: dashed ? 'transparent' : color,
-              borderLeft: dashed ? `1px dashed ${color}` : undefined,
-              opacity: dashed ? 0.45 : 0.65,
-            }}
-          />
-        ))}
+        {values.map((x, i) => {
+          // Linien auf Device-Pixel rasten, damit sie visuell sauber sind.
+          // Ohne Snap wirken feine Rasterlinien schnell unscharf.
+          const snappedX = snapToDevicePixel(x)
+          return (
+            <div
+              key={`${zIndex}-vx-${i}`}
+              style={{
+                position: 'absolute',
+                top: 0,
+                bottom: 0,
+                left: `${snappedX}px`,
+                width: '1px',
+                background: dashed ? 'transparent' : color,
+                borderLeft: dashed ? `1px dashed ${color}` : undefined,
+                opacity: dashed ? 0.45 : 0.65,
+              }}
+            />
+          )
+        })}
       </div>
     )
   }
@@ -159,21 +171,24 @@ export default function GridOverlay() {
           overflow: 'hidden',
         }}
       >
-        {values.map((y, i) => (
-          <div
-            key={`${zIndex}-hy-${i}`}
-            style={{
-              position: 'absolute',
-              left: 0,
-              right: 0,
-              top: `${y}px`,
-              height: '1px',
-              background: dashed ? 'transparent' : color,
-              borderTop: dashed ? `1px dashed ${color}` : undefined,
-              opacity: dashed ? 0.45 : 0.65,
-            }}
-          />
-        ))}
+        {values.map((y, i) => {
+          const snappedY = snapToDevicePixel(y)
+          return (
+            <div
+              key={`${zIndex}-hy-${i}`}
+              style={{
+                position: 'absolute',
+                left: 0,
+                right: 0,
+                top: `${snappedY}px`,
+                height: '1px',
+                background: dashed ? 'transparent' : color,
+                borderTop: dashed ? `1px dashed ${color}` : undefined,
+                opacity: dashed ? 0.45 : 0.65,
+              }}
+            />
+          )
+        })}
       </div>
     )
   }

@@ -119,8 +119,18 @@ html {
 
 .home-teaser {
   display: grid;
-  grid-template-rows: auto auto;
-  align-self: start;
+  grid-template-rows: minmax(0, 1fr) auto;
+  height: 100%;
+}
+
+.home-teaser__media {
+  position: relative;
+  overflow: hidden;
+  min-height: calc((var(--geo-row) * 6) + (var(--geo-row-gap) * 5));
+}
+
+.home-teaser__meta {
+  background: var(--color-ground);
 }
 
 .home-teaser--history {
@@ -291,6 +301,10 @@ img {
     grid-row: 7 / 13;
   }
 
+  .home-teaser__media {
+    min-height: calc((var(--geo-row) * 4) + (var(--geo-row-gap) * 3));
+  }
+
   .footer-grid__brand,
   .footer-grid__city,
   .footer-grid__links {
@@ -338,5 +352,9 @@ img {
 
   .home-teaser--culture {
     grid-row: 8 / 15;
+  }
+
+  .home-teaser__media {
+    min-height: calc((var(--geo-row) * 5) + (var(--geo-row-gap) * 4));
   }
 }
