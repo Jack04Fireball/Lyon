@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { useGridOverlay } from './GridOverlayProvider'
 import { GEO_OVERLAY_COLOR, FIB_OVERLAY_COLOR, FIB_VALUES_OVERLAY } from './grid-config'
 
@@ -18,6 +19,21 @@ function buildFibLines(values: number[]): number[] {
 export default function GridOverlay() {
   const { isVisible, toggle } = useGridOverlay()
   const fibLines = buildFibLines(FIB_VALUES_OVERLAY)
+  const [geoCols, setGeoCols] = useState(12)
+
+  useEffect(() => {
+    function updateGeoCols() {
+      const value = Number.parseInt(
+        getComputedStyle(document.documentElement).getPropertyValue('--geo-cols').trim(),
+        10,
+      )
+      setGeoCols(Number.isFinite(value) && value > 0 ? value : 12)
+    }
+
+    updateGeoCols()
+    window.addEventListener('resize', updateGeoCols)
+    return () => window.removeEventListener('resize', updateGeoCols)
+  }, [])
 
   return (
     <>
@@ -60,7 +76,7 @@ export default function GridOverlay() {
               paddingInline:       'var(--geo-margin)',
             }}
           >
-            {Array.from({ length: 12 }).map((_, i) => (
+            {Array.from({ length: geoCols }).map((_, i) => (
               <div
                 key={i}
                 style={{

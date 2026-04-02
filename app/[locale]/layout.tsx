@@ -8,6 +8,7 @@ import { GridOverlayProvider } from '@/components/grid/GridOverlayProvider'
 import GridOverlay from '@/components/grid/GridOverlay'
 import Navigation from '@/components/layout/Navigation'
 import Footer from '@/components/layout/Footer'
+import DocumentLanguage from '@/components/layout/DocumentLanguage'
 
 interface Props {
   children: React.ReactNode
@@ -29,6 +30,7 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <NextIntlClientProvider messages={messages}>
+      <DocumentLanguage />
       <GridOverlayProvider>
         <Navigation />
         <main>{children}</main>

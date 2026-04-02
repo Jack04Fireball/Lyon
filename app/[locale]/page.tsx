@@ -1,5 +1,4 @@
-import { useTranslations, useLocale } from 'next-intl'
-import { setRequestLocale } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import Image from 'next/image'
 import { Link } from '@/lib/i18n/navigation'
 import Hero from '@/components/sections/Hero'
@@ -17,53 +16,33 @@ export default async function HomePage({ params }: Props) {
   const { locale } = await params
   setRequestLocale(locale)
 
-  // Direktes Übersetzen via useTranslations() geht in Server Components nur wenn
-  // setRequestLocale() vorher aufgerufen wird – wir nutzen useTranslations als
-  // Hilfskonstrukt via unstable_setRequestLocale. Alternativ: getTranslations()
-  const isFr = locale === 'fr'
-
-  const heroData = {
-    quote: isFr
-      ? "Dans la confluence naît l'identité."
-      : 'Im Zusammenfluss entsteht Identität.',
-    intro: isFr
-      ? "Lyon est née à la confluence du Rhône et de la Saône. Deux fleuves, deux ordres, une ville. Ici se rencontrent l'histoire et le présent, l'architecture et l'espace de vie, le silence et le mouvement."
-      : 'Lyon liegt am Zusammenfluss von Rhône und Saône. Zwei Flüsse, zwei Ordnungen, eine Stadt. Hier begegnen sich Geschichte und Gegenwart, Architektur und Lebensraum, Stille und Bewegung.',
-    linkHistory: isFr ? "Découvrir l'histoire" : 'Geschichte entdecken',
-    linkCulture: isFr ? 'Culture & Événements' : 'Kultur & Events',
-  }
+  const heroT = await getTranslations({ locale, namespace: 'Hero' })
+  const homeT = await getTranslations({ locale, namespace: 'Home' })
 
   return (
     <>
       {/* 1. Hero-Sektion */}
       <Hero
-        quote={heroData.quote}
-        intro={heroData.intro}
-        linkHistory={heroData.linkHistory}
-        linkCulture={heroData.linkCulture}
+        quote={heroT('quote')}
+        intro={heroT('intro')}
+        linkHistory={heroT('linkHistory')}
+        linkCulture={heroT('linkCulture')}
+        imageAlt={heroT('imageAlt')}
       />
 
       {/* 2. Teaserblock: Geschichte + Kultur (geometrisches Raster) */}
-      <section
-        style={{
-          display:             'grid',
-          gridTemplateColumns: 'repeat(var(--geo-cols), 1fr)',
-          gap:                 'var(--geo-gutter)',
-          paddingInline:       'var(--geo-margin)',
-          paddingBlock:        'var(--fib-144)',
-        }}
-      >
+      <section className="home-teasers">
         {/* Geschichte-Teaser */}
         <Link
           href="/geschichte"
-          style={{ gridColumn: '1 / 7', display: 'block' }}
+          className="home-teaser home-teaser--history"
         >
           <div style={{ aspectRatio: '3/2', position: 'relative', overflow: 'hidden' }}>
             <Image
               src="/images/alasdair1907-lyon-7875644.jpg"
-              alt={isFr ? 'Histoire de Lyon' : 'Geschichte Lyons'}
+              alt={homeT('historyTeaserAlt')}
               fill
-              sizes="50vw"
+              sizes="(max-width: 1024px) 100vw, 50vw"
               style={{ objectFit: 'cover' }}
             />
           </div>
@@ -77,7 +56,7 @@ export default async function HomePage({ params }: Props) {
             }}
           >
             <span style={{ fontFamily: 'var(--font-spectral)', fontSize: 'var(--fib-21)', fontWeight: 400 }}>
-              {isFr ? 'Histoire & Identité' : 'Geschichte & Identität'}
+              {homeT('historyTeaserTitle')}
             </span>
             <span style={{ fontFamily: 'var(--font-inter)', fontSize: 'var(--fib-13)', color: 'var(--color-stone)', letterSpacing: '0.1em' }}>→</span>
           </div>
@@ -86,14 +65,14 @@ export default async function HomePage({ params }: Props) {
         {/* Kultur-Teaser */}
         <Link
           href="/kultur"
-          style={{ gridColumn: '7 / 13', display: 'block' }}
+          className="home-teaser home-teaser--culture"
         >
           <div style={{ aspectRatio: '3/2', position: 'relative', overflow: 'hidden' }}>
             <Image
               src="/images/ludo-photos-abstract-4124262_1920.jpg"
-              alt={isFr ? 'Culture & Événements' : 'Kultur & Events'}
+              alt={homeT('cultureTeaserAlt')}
               fill
-              sizes="50vw"
+              sizes="(max-width: 1024px) 100vw, 50vw"
               style={{ objectFit: 'cover' }}
             />
           </div>
@@ -107,7 +86,7 @@ export default async function HomePage({ params }: Props) {
             }}
           >
             <span style={{ fontFamily: 'var(--font-spectral)', fontSize: 'var(--fib-21)', fontWeight: 400 }}>
-              {isFr ? 'Culture & Événements' : 'Kultur & Events'}
+              {homeT('cultureTeaserTitle')}
             </span>
             <span style={{ fontFamily: 'var(--font-inter)', fontSize: 'var(--fib-13)', color: 'var(--color-stone)', letterSpacing: '0.1em' }}>→</span>
           </div>

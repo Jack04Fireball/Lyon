@@ -6,9 +6,10 @@ interface HeroProps {
   intro:       string
   linkHistory: string
   linkCulture: string
+  imageAlt:    string
 }
 
-export default function Hero({ quote, intro, linkHistory, linkCulture }: HeroProps) {
+export default function Hero({ quote, intro, linkHistory, linkCulture, imageAlt }: HeroProps) {
   return (
     <section style={{ position: 'relative', minHeight: '100svh', overflow: 'hidden' }}>
 
@@ -22,7 +23,7 @@ export default function Hero({ quote, intro, linkHistory, linkCulture }: HeroPro
       >
         <Image
           src="/images/twalmedia-lyon-3598618_1920.jpg"
-          alt="Lyon — Blick auf die Quais"
+          alt={imageAlt}
           fill
           priority
           sizes="100vw"

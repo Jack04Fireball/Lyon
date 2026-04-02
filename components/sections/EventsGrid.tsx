@@ -50,6 +50,12 @@ export default function EventsGrid({
     { key: 'concert',  label: labelConcert },
     { key: 'theater',  label: labelTheater },
   ]
+  const categoryLabels: Record<EventCategory, string> = {
+    festival: labelFestival,
+    museum: labelMuseum,
+    concert: labelConcert,
+    theater: labelTheater,
+  }
 
   // Verfügbare Monate aus den Events ableiten
   const availableMonths = [...new Set(events.map(e => e.month))].sort((a, b) => a - b)
@@ -125,7 +131,7 @@ export default function EventsGrid({
           paddingInline:       'var(--geo-margin)',
         }}
       >
-        {filtered.map((event, i) => (
+        {filtered.map(event => (
           <div
             key={event.id}
             style={{
@@ -135,6 +141,7 @@ export default function EventsGrid({
             <EventCard
               event={event}
               locale={locale}
+              categoryLabel={categoryLabels[event.category]}
               onClick={setSelectedEvent}
             />
           </div>
@@ -160,6 +167,7 @@ export default function EventsGrid({
         <EventModal
           event={selectedEvent}
           locale={locale}
+          categoryLabel={categoryLabels[selectedEvent.category]}
           labelLocation={labelLocation}
           labelDate={labelDate}
           labelCategory={labelCategory}

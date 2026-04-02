@@ -8,7 +8,14 @@
     "quote": "Im Zusammenfluss entsteht Identität.",
     "intro": "Lyon liegt am Zusammenfluss von Rhône und Saône. Zwei Flüsse, zwei Ordnungen, eine Stadt. Hier begegnen sich Geschichte und Gegenwart, Architektur und Lebensraum, Stille und Bewegung.",
     "linkHistory": "Geschichte entdecken",
-    "linkCulture": "Kultur & Events"
+    "linkCulture": "Kultur & Events",
+    "imageAlt": "Lyon bei Sonnenuntergang mit Blick auf die Quais"
+  },
+  "Home": {
+    "historyTeaserTitle": "Geschichte & Identität",
+    "historyTeaserAlt": "Historische Architektur in Lyon",
+    "cultureTeaserTitle": "Kultur & Events",
+    "cultureTeaserAlt": "Abstrakte Lichtinstallation in Lyon"
   },
   "History": {
     "title": "Geschichte & Identität",

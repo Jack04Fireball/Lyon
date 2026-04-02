@@ -8,7 +8,14 @@
     "quote": "Dans la confluence naît l'identité.",
     "intro": "Lyon est née à la confluence du Rhône et de la Saône. Deux fleuves, deux ordres, une ville. Ici se rencontrent l'histoire et le présent, l'architecture et l'espace de vie, le silence et le mouvement.",
     "linkHistory": "Découvrir l'histoire",
-    "linkCulture": "Culture & Événements"
+    "linkCulture": "Culture & Événements",
+    "imageAlt": "Vue de Lyon au coucher du soleil sur les quais"
+  },
+  "Home": {
+    "historyTeaserTitle": "Histoire & Identité",
+    "historyTeaserAlt": "Architecture historique à Lyon",
+    "cultureTeaserTitle": "Culture & Événements",
+    "cultureTeaserAlt": "Installation lumineuse abstraite à Lyon"
   },
   "History": {
     "title": "Histoire & Identité",

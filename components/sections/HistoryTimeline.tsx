@@ -20,6 +20,7 @@ export default async function HistoryTimeline({ epochs }: HistoryTimelineProps) 
         const text   = isDE ? epoch.textDe   : epoch.textFr
         const quote  = isDE ? epoch.quoteDe  : epoch.quoteFr
         const label  = isDE ? epoch.epochDe  : epoch.epochFr
+        const imageAlt = isDE ? epoch.imageAltDe : epoch.imageAltFr
 
         return (
           <article key={epoch.id}>
@@ -36,7 +37,7 @@ export default async function HistoryTimeline({ epochs }: HistoryTimelineProps) 
             {/* Geometrisches Raster: Bild — volle Breite */}
             <ImageBlock
               src={epoch.image}
-              alt={epoch.imageAlt}
+              alt={imageAlt}
               height="55vh"
               position={isEven ? 'center 30%' : 'center 60%'}
             />
@@ -54,12 +55,9 @@ export default async function HistoryTimeline({ epochs }: HistoryTimelineProps) 
             >
               <div
                 style={{
-                  background:    'var(--color-ground)',
-                  paddingInline: 'var(--fib-34)',
-                  paddingTop:    'var(--fib-34)',
-                  paddingBottom: 'var(--fib-13)',
-                  maxWidth:      'var(--fib-233)',
-                  width:         '100%',
+                  background: 'var(--color-ground)',
+                  maxWidth:   'var(--fib-610)',
+                  width:      '100%',
                 }}
               >
                 <EditorialBlock

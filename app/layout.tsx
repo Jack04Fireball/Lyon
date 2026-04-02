@@ -22,9 +22,8 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  // lang wird per next-intl in den Seiten-Metadaten gesetzt
   return (
-    <html className={`${spectral.variable} ${inter.variable}`}>
+    <html lang="de" className={`${spectral.variable} ${inter.variable}`}>
       <body>{children}</body>
     </html>
   )

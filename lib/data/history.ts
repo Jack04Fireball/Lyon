@@ -9,7 +9,8 @@ export interface HistoryEpoch {
   quoteDe:  string
   quoteFr:  string
   image:    string
-  imageAlt: string
+  imageAltDe: string
+  imageAltFr: string
 }
 
 export const historyEpochs: HistoryEpoch[] = [
@@ -23,8 +24,9 @@ export const historyEpochs: HistoryEpoch[] = [
     textFr:   "Là où le Rhône et la Saône se rejoignent, Lugdunum est née. La confluence n'était pas un hasard — c'était une condition. L'eau a façonné la géographie, la géographie a façonné la ville, la ville a façonné l'identité. Deux fleuves, deux caractères : la Saône calme et verte, le Rhône puissant et bleu. Là où ils se touchent, Lyon commence.",
     quoteDe:  'Zwei Flüsse, eine Seele.',
     quoteFr:  'Deux fleuves, une âme.',
-    image:    '/images/dmz-lyon-1238709_1920.jpg',
-    imageAlt: 'Confluenz von Rhône und Saône',
+    image:      '/images/dmz-lyon-1238709_1920.jpg',
+    imageAltDe: 'Zusammenfluss von Rhône und Saône',
+    imageAltFr: 'Confluence du Rhône et de la Saône',
   },
   {
     id:       'roman',
@@ -36,8 +38,9 @@ export const historyEpochs: HistoryEpoch[] = [
     textFr:   "Lugdunum devint la capitale des Gaules. Sur la colline de Fourvière s'élevèrent théâtres, temples et aqueducs. La ville grandit en hauteur et en étendue — ordonnée, puissante, durable. L'amphithéâtre des Trois Gaules accueillait dix mille personnes. Des empereurs y naquirent. L'héritage est encore visible.",
     quoteDe:  'Auf dem Hügel begann die Geschichte.',
     quoteFr:  "Sur la colline commença l'histoire.",
-    image:    '/images/twalmedia-basilica-2382830_1920.jpg',
-    imageAlt: 'Fourvière-Hügel mit Basilika',
+    image:      '/images/twalmedia-basilica-2382830_1920.jpg',
+    imageAltDe: 'Fourvière-Hügel mit Basilika',
+    imageAltFr: 'Colline de Fourvière avec basilique',
   },
   {
     id:       'renaissance',
@@ -49,8 +52,9 @@ export const historyEpochs: HistoryEpoch[] = [
     textFr:   "Lyon devint le centre européen de l'imprimerie et du commerce. Rabelais y écrivit. Des banquiers de toute l'Europe se retrouvaient aux foires. La ville s'ouvrit au monde. Dans le Vieux-Lyon naquirent les hôtels particuliers Renaissance avec leurs mystérieux traboules — passages secrets reliant les cours intérieures.",
     quoteDe:  'Lyon war die Welt in Miniatur.',
     quoteFr:  'Lyon était le monde en miniature.',
-    image:    '/images/alasdair1907-lyon-7875644.jpg',
-    imageAlt: 'Vieux-Lyon, Renaissance-Architektur',
+    image:      '/images/alasdair1907-lyon-7875644.jpg',
+    imageAltDe: 'Vieux-Lyon mit Renaissance-Architektur',
+    imageAltFr: 'Vieux-Lyon et architecture Renaissance',
   },
   {
     id:       'canuts',
@@ -62,8 +66,9 @@ export const historyEpochs: HistoryEpoch[] = [
     textFr:   "Les tisserands de soie de la Croix-Rousse ont forgé une culture propre. Dans d'étroits ateliers entre lumière et bruit naissaient les plus belles soieries d'Europe. Leurs révoltes de 1831 et 1834 furent les premières luttes ouvrières des temps modernes. La Croix-Rousse vit encore aujourd'hui de cet héritage — créative, singulière, éveillée.",
     quoteDe:  'Vivre en travaillant ou mourir en combattant.',
     quoteFr:  'Vivre en travaillant ou mourir en combattant.',
-    image:    '/images/roses_street-town-6820819_1920.jpg',
-    imageAlt: 'Strassen der Croix-Rousse',
+    image:      '/images/roses_street-town-6820819_1920.jpg',
+    imageAltDe: 'Straßen der Croix-Rousse',
+    imageAltFr: 'Rues de la Croix-Rousse',
   },
   {
     id:       'modern',
@@ -75,7 +80,8 @@ export const historyEpochs: HistoryEpoch[] = [
     textFr:   "La Métropole de Lyon est aujourd'hui l'une des villes les plus dynamiques d'Europe. Architecture, gastronomie, biotechnologie et culture convergent. La Fête des Lumières illumine la ville chaque décembre. Le quartier Confluence est une nouvelle ville dans la ville : construction durable, architecture contemporaine, vie au bord de l'eau.",
     quoteDe:  'Lyon erfindet sich immer neu.',
     quoteFr:  'Lyon se réinvente sans cesse.',
-    image:    '/images/tanao68-lyon-7117498_1920.jpg',
-    imageAlt: 'Modernes Lyon, Quartier Confluence',
+    image:      '/images/tanao68-lyon-7117498_1920.jpg',
+    imageAltDe: 'Modernes Lyon im Quartier Confluence',
+    imageAltFr: 'Lyon contemporaine, quartier Confluence',
   },
 ]

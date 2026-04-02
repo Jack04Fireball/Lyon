@@ -2,9 +2,10 @@ import Image from 'next/image'
 import type { LyonEvent } from '@/lib/data/events'
 
 interface EventCardProps {
-  event:    LyonEvent
-  locale:   string
-  onClick:  (event: LyonEvent) => void
+  event:         LyonEvent
+  locale:        string
+  categoryLabel: string
+  onClick:       (event: LyonEvent) => void
 }
 
 const categoryColors: Record<string, string> = {
@@ -22,19 +23,25 @@ function formatDate(iso: string, locale: string) {
   })
 }
 
-export default function EventCard({ event, locale, onClick }: EventCardProps) {
+export default function EventCard({ event, locale, categoryLabel, onClick }: EventCardProps) {
   const title   = locale === 'fr' ? event.titleFr : event.titleDe
   const catColor = categoryColors[event.category]
+  const openLabel = `${title} (${formatDate(event.date, locale)})`
 
   return (
     <article
+      role="button"
+      tabIndex={0}
+      aria-haspopup="dialog"
+      aria-label={openLabel}
       onClick={() => onClick(event)}
-      style={{
-        cursor:  'pointer',
-        display: 'flex',
-        flexDirection: 'column',
-        gap:     0,
+      onKeyDown={e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          onClick(event)
+        }
       }}
+      className="event-card"
     >
       {/* Geometrisches Raster: Bild */}
       <div style={{ position: 'relative', aspectRatio: '4/3', overflow: 'hidden' }}>
@@ -76,7 +83,7 @@ export default function EventCard({ event, locale, onClick }: EventCardProps) {
               color:         catColor,
             }}
           >
-            {event.category}
+            {categoryLabel}
           </span>
           <span
             style={{

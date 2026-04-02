@@ -6,19 +6,9 @@ export default function Footer() {
   const t = useTranslations('Footer')
 
   return (
-    <footer
-      style={{
-        borderTop:     '1px solid var(--color-text)',
-        paddingInline: 'var(--fib-34)',
-        paddingBlock:  'var(--fib-55)',
-        display:       'grid',
-        gridTemplateColumns: 'repeat(var(--geo-cols), 1fr)',
-        gap:           'var(--geo-gutter)',
-        marginTop:     'var(--fib-144)',
-      }}
-    >
+    <footer className="footer-grid">
       {/* Logo + Tagline (geometrisches Raster: Spalten 1–4) */}
-      <div style={{ gridColumn: '1 / 4' }}>
+      <div className="footer-grid__brand">
         <Logo size={28} />
         <p
           style={{
@@ -36,8 +26,8 @@ export default function Footer() {
 
       {/* Stadt (Spalten 5–7) */}
       <div
+        className="footer-grid__city"
         style={{
-          gridColumn:  '5 / 8',
           fontFamily:  'var(--font-inter)',
           fontSize:    'var(--fib-13)',
           color:       'var(--color-stone)',
@@ -49,8 +39,8 @@ export default function Footer() {
 
       {/* Links (Spalten 9–12) */}
       <nav
+        className="footer-grid__links"
         style={{
-          gridColumn:  '9 / 13',
           display:     'flex',
           flexDirection: 'column',
           gap:         'var(--fib-8)',

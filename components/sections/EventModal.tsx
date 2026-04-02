@@ -5,8 +5,9 @@ import Image from 'next/image'
 import type { LyonEvent } from '@/lib/data/events'
 
 interface EventModalProps {
-  event:   LyonEvent
-  locale:  string
+  event:         LyonEvent
+  locale:        string
+  categoryLabel: string
   labelLocation: string
   labelDate:     string
   labelCategory: string
@@ -33,6 +34,7 @@ const categoryColors: Record<string, string> = {
 export default function EventModal({
   event,
   locale,
+  categoryLabel,
   labelLocation,
   labelDate,
   labelCategory,
@@ -112,7 +114,7 @@ export default function EventModal({
               marginBottom:  'var(--fib-13)',
             }}
           >
-            {labelCategory}: {event.category}
+            {labelCategory}: {categoryLabel}
           </p>
 
           {/* Titel */}
