@@ -9,9 +9,9 @@
   --color-terracotta: #b14d3f;
   --color-border: rgba(17, 19, 23, 0.14);
 
-  --radius-sm: 12px;
-  --radius-md: 18px;
-  --radius-lg: 26px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
 
   --shadow-soft: 0 18px 42px rgba(15, 19, 35, 0.08);
   --shadow-card: 0 12px 32px rgba(17, 19, 23, 0.08);
@@ -79,7 +79,7 @@ button {
 }
 
 .shell {
-  width: min(1180px, calc(100% - 3rem));
+  width: min(1280px, calc(100% - 1.25rem));
   margin-inline: auto;
 }
 
@@ -163,7 +163,7 @@ button {
   text-transform: uppercase;
   padding: 0.28rem 0.58rem;
   border: 1px solid var(--color-border);
-  border-radius: 999px;
+  border-radius: 0;
   background: rgba(255, 255, 255, 0.62);
 }
 
@@ -239,7 +239,7 @@ button {
 
 .hero-cta__primary,
 .hero-cta__secondary {
-  border-radius: 999px;
+  border-radius: 0;
   font-size: 0.74rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -435,7 +435,7 @@ button {
   background: transparent;
   border: 1px solid var(--color-border);
   color: var(--color-stone);
-  border-radius: 999px;
+  border-radius: 0;
   font-size: 0.72rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -603,7 +603,7 @@ button {
 
 .event-modal__close {
   border: 1px solid var(--color-border);
-  border-radius: 999px;
+  border-radius: 0;
   background: #fff;
   color: var(--color-text);
   font-size: 0.72rem;
@@ -675,7 +675,7 @@ button {
 
 @media (max-width: 768px) {
   .shell {
-    width: min(1180px, calc(100% - 1.3rem));
+    width: min(1280px, calc(100% - 0.75rem));
   }
 
   .nav-link--home {
