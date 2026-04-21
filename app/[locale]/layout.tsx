@@ -1,8 +1,7 @@
 import { NextIntlClientProvider } from 'next-intl'
-import { getMessages } from 'next-intl/server'
+import { getMessages, setRequestLocale } from 'next-intl/server'
 import { notFound } from 'next/navigation'
 import { hasLocale } from 'next-intl'
-import { setRequestLocale } from 'next-intl/server'
 import { routing } from '@/lib/i18n/routing'
 import Navigation from '@/components/layout/Navigation'
 import Footer from '@/components/layout/Footer'
@@ -10,27 +9,24 @@ import DocumentLanguage from '@/components/layout/DocumentLanguage'
 
 interface Props {
   children: React.ReactNode
-  params:   Promise<{ locale: string }>
+  params: Promise<{ locale: string }>
 }
 
 export default async function LocaleLayout({ children, params }: Props) {
-  // Next.js 16: params ist async
   const { locale } = await params
 
   if (!hasLocale(routing.locales, locale)) {
     notFound()
   }
 
-  // Enables static rendering
   setRequestLocale(locale)
-
   const messages = await getMessages()
 
   return (
     <NextIntlClientProvider messages={messages}>
       <DocumentLanguage />
       <Navigation />
-      <main>{children}</main>
+      <main className="site-main">{children}</main>
       <Footer />
     </NextIntlClientProvider>
   )

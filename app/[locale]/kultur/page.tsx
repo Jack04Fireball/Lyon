@@ -1,6 +1,7 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { events } from '@/lib/data/events'
 import EventsGrid from '@/components/sections/EventsGrid'
+import Reveal from '@/components/ui/Reveal'
 import { routing } from '@/lib/i18n/routing'
 
 export function generateStaticParams() {
@@ -19,48 +20,19 @@ export default async function KulturPage({ params }: Props) {
 
   return (
     <>
-      {/* 2D-Geometrie + Fibonacci-Rhythmus: Seiten-Header */}
-      <section className="geo-grid-2d page-header">
-        <p
-          className="page-header__eyebrow"
-          style={{
-            fontFamily:    'var(--font-inter)',
-            fontSize:      'var(--fib-13)',
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            color:         'var(--color-terracotta)',
-          }}
-        >
-          Lyon
-        </p>
-        <h1
-          className="page-header__title"
-          style={{
-            fontFamily:    'var(--font-spectral)',
-            fontSize:      'clamp(2.5rem, 6vw, var(--fib-89))',
-            fontWeight:    300,
-            lineHeight:    1.05,
-            letterSpacing: '-0.03em',
-            margin:        0,
-          }}
-        >
-          {t('title')}
-        </h1>
-        <p
-          className="page-header__subtitle"
-          style={{
-            fontFamily:    'var(--font-inter)',
-            fontSize:      'var(--fib-13)',
-            color:         'var(--color-stone)',
-            letterSpacing: '0.05em',
-          }}
-        >
-          {t('subtitle')}
-        </p>
+      <section className="shell page-header">
+        <Reveal delay={0}>
+          <p className="page-header__eyebrow">Lyon</p>
+        </Reveal>
+        <Reveal delay={100}>
+          <h1 className="page-header__title">{t('title')}</h1>
+        </Reveal>
+        <Reveal delay={180}>
+          <p className="page-header__subtitle">{t('subtitle')}</p>
+        </Reveal>
       </section>
 
-      {/* Events + Filter */}
-      <section style={{ paddingBlock: 'var(--fib-55)' }}>
+      <section className="shell events-section">
         <EventsGrid
           events={events}
           locale={locale}

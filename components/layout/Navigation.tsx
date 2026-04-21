@@ -6,24 +6,30 @@ import Logo from './Logo'
 import LanguageToggle from './LanguageToggle'
 
 export default function Navigation() {
-  const t        = useTranslations('Nav')
+  const t = useTranslations('Nav')
   const pathname = usePathname()
 
   return (
     <header className="nav-shell">
-      {/* Links: Navigation in Inter */}
-      <nav className="nav-primary">
-        <Link href="/" className={`nav-link nav-link--home${pathname === '/' ? ' nav-link--active' : ''}`}>{t('home')}</Link>
-        <Link href="/geschichte" className={`nav-link${pathname === '/geschichte' ? ' nav-link--active' : ''}`}>{t('history')}</Link>
-        <Link href="/kultur" className={`nav-link nav-link--culture${pathname === '/kultur' ? ' nav-link--active' : ''}`}>{t('culture')}</Link>
-      </nav>
+      <div className="shell nav-inner">
+        <nav className="nav-primary" aria-label="Primary">
+          <Link href="/" className={`nav-link nav-link--home${pathname === '/' ? ' nav-link--active' : ''}`}>
+            {t('home')}
+          </Link>
+          <Link href="/geschichte" className={`nav-link${pathname === '/geschichte' ? ' nav-link--active' : ''}`}>
+            {t('history')}
+          </Link>
+          <Link href="/kultur" className={`nav-link${pathname === '/kultur' ? ' nav-link--active' : ''}`}>
+            {t('culture')}
+          </Link>
+        </nav>
 
-      {/* Rechts: Sprache + Logo */}
-      <div className="nav-meta">
-        <LanguageToggle />
-        <Link href="/" aria-label={t('home')} className="nav-logo">
-          <Logo size={30} />
-        </Link>
+        <div className="nav-meta">
+          <LanguageToggle />
+          <Link href="/" aria-label={t('home')} className="nav-logo">
+            <Logo size={30} />
+          </Link>
+        </div>
       </div>
     </header>
   )

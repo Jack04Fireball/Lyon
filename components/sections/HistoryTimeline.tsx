@@ -1,8 +1,7 @@
 import { getLocale } from 'next-intl/server'
+import Image from 'next/image'
 import type { HistoryEpoch } from '@/lib/data/history'
-import ImageBlock from './ImageBlock'
-import EditorialBlock from './EditorialBlock'
-import QuoteBlock from './QuoteBlock'
+import Reveal from '@/components/ui/Reveal'
 
 interface HistoryTimelineProps {
   epochs: HistoryEpoch[]
@@ -13,75 +12,35 @@ export default async function HistoryTimeline({ epochs }: HistoryTimelineProps) 
   const isDE = locale === 'de'
 
   return (
-    <div>
+    <section className="shell history-timeline">
       {epochs.map((epoch, index) => {
-        const isEven = index % 2 === 0
-        const title  = isDE ? epoch.titleDe  : epoch.titleFr
-        const text   = isDE ? epoch.textDe   : epoch.textFr
-        const quote  = isDE ? epoch.quoteDe  : epoch.quoteFr
-        const label  = isDE ? epoch.epochDe  : epoch.epochFr
+        const title = isDE ? epoch.titleDe : epoch.titleFr
+        const text = isDE ? epoch.textDe : epoch.textFr
+        const quote = isDE ? epoch.quoteDe : epoch.quoteFr
+        const label = isDE ? epoch.epochDe : epoch.epochFr
         const imageAlt = isDE ? epoch.imageAltDe : epoch.imageAltFr
 
         return (
-          <article key={epoch.id}>
-            {/* Trennlinie */}
-            <div
-              style={{
-                height:      '1px',
-                background:  'var(--color-text)',
-                marginInline: 'var(--fib-34)',
-                opacity:     0.12,
-              }}
-            />
-
-            {/* Geometrisches Raster: Bild — volle Breite */}
-            <ImageBlock
-              src={epoch.image}
-              alt={imageAlt}
-              height="55vh"
-              position={isEven ? 'center 30%' : 'center 60%'}
-            />
-
-            {/* Fibonacci-Raster: Text-Box (überlappt Bild leicht) */}
-            <div
-              style={{
-                display:        'flex',
-                justifyContent: isEven ? 'flex-start' : 'flex-end',
-                paddingInline:  'var(--fib-21)',
-                marginTop:      'calc(var(--fib-55) * -1)',
-                position:       'relative',
-                zIndex:         1,
-              }}
-            >
-              <div
-                style={{
-                  background: 'var(--color-ground)',
-                  maxWidth:   'var(--fib-610)',
-                  width:      '100%',
-                }}
-              >
-                <EditorialBlock
-                  label={label}
-                  title={title}
-                  text={text}
-                  maxWidth="none"
-                />
-              </div>
+          <Reveal key={epoch.id} className={`history-item${index % 2 === 1 ? ' is-reverse' : ''}`} delay={(index % 3) * 80}>
+            <div className="history-item__media">
+              <Image
+                src={epoch.image}
+                alt={imageAlt}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                style={{ objectFit: 'cover', objectPosition: index % 2 === 0 ? 'center 35%' : 'center 55%' }}
+              />
             </div>
 
-            {/* Fibonacci-Raster: Pull-Quote */}
-            <div
-              style={{
-                display:        'flex',
-                justifyContent: isEven ? 'flex-end' : 'flex-start',
-                paddingInline:  'var(--fib-34)',
-              }}
-            >
-              <QuoteBlock text={quote} />
+            <div className="history-item__body">
+              <p className="history-item__epoch">{label}</p>
+              <h2 className="history-item__title">{title}</h2>
+              <p className="history-item__text">{text}</p>
+              <blockquote className="history-item__quote">„{quote}"</blockquote>
             </div>
-          </article>
+          </Reveal>
         )
       })}
-    </div>
+    </section>
   )
 }

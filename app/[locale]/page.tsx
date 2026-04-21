@@ -2,6 +2,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server'
 import Image from 'next/image'
 import { Link } from '@/lib/i18n/navigation'
 import Hero from '@/components/sections/Hero'
+import Reveal from '@/components/ui/Reveal'
 import { routing } from '@/lib/i18n/routing'
 
 export function generateStaticParams() {
@@ -21,7 +22,6 @@ export default async function HomePage({ params }: Props) {
 
   return (
     <>
-      {/* 1. Hero-Sektion */}
       <Hero
         quote={heroT('quote')}
         intro={heroT('intro')}
@@ -30,55 +30,42 @@ export default async function HomePage({ params }: Props) {
         imageAlt={heroT('imageAlt')}
       />
 
-      {/* 2. Teaserblock: Geschichte + Kultur (geometrisches Raster) */}
-      <section className="geo-grid-2d home-teasers">
-        {/* Geschichte-Teaser */}
-        <Link
-          href="/geschichte"
-          className="home-teaser home-teaser--history"
-        >
-          <div className="home-teaser__media">
-            <Image
-              src="/images/alasdair1907-lyon-7875644.jpg"
-              alt={homeT('historyTeaserAlt')}
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              style={{ objectFit: 'cover' }}
-            />
-          </div>
-          <div
-            className="home-teaser__meta"
-          >
-            <span className="home-teaser__title">
-              {homeT('historyTeaserTitle')}
-            </span>
-            <span className="home-teaser__arrow">→</span>
-          </div>
-        </Link>
+      <section className="shell home-teasers">
+        <Reveal>
+          <Link href="/geschichte" className="home-teaser">
+            <div className="home-teaser__media">
+              <Image
+                src="/images/alasdair1907-lyon-7875644.jpg"
+                alt={homeT('historyTeaserAlt')}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                style={{ objectFit: 'cover' }}
+              />
+            </div>
+            <div className="home-teaser__meta">
+              <span className="home-teaser__title">{homeT('historyTeaserTitle')}</span>
+              <span className="home-teaser__arrow">→</span>
+            </div>
+          </Link>
+        </Reveal>
 
-        {/* Kultur-Teaser */}
-        <Link
-          href="/kultur"
-          className="home-teaser home-teaser--culture"
-        >
-          <div className="home-teaser__media">
-            <Image
-              src="/images/ludo-photos-abstract-4124262_1920.jpg"
-              alt={homeT('cultureTeaserAlt')}
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              style={{ objectFit: 'cover' }}
-            />
-          </div>
-          <div
-            className="home-teaser__meta"
-          >
-            <span className="home-teaser__title">
-              {homeT('cultureTeaserTitle')}
-            </span>
-            <span className="home-teaser__arrow">→</span>
-          </div>
-        </Link>
+        <Reveal delay={120}>
+          <Link href="/kultur" className="home-teaser">
+            <div className="home-teaser__media">
+              <Image
+                src="/images/ludo-photos-abstract-4124262_1920.jpg"
+                alt={homeT('cultureTeaserAlt')}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                style={{ objectFit: 'cover' }}
+              />
+            </div>
+            <div className="home-teaser__meta">
+              <span className="home-teaser__title">{homeT('cultureTeaserTitle')}</span>
+              <span className="home-teaser__arrow">→</span>
+            </div>
+          </Link>
+        </Reveal>
       </section>
     </>
   )
