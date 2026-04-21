@@ -20,7 +20,7 @@ export default async function GeschichtePage({ params }: Props) {
 
   return (
     <>
-      <section className="shell page-header">
+      <section className="shell page-header page-header--history">
         <Reveal delay={0}>
           <p className="page-header__eyebrow">Lyon</p>
         </Reveal>

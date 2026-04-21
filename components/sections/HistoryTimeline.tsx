@@ -19,6 +19,7 @@ export default async function HistoryTimeline({ epochs }: HistoryTimelineProps) 
         const quote = isDE ? epoch.quoteDe : epoch.quoteFr
         const label = isDE ? epoch.epochDe : epoch.epochFr
         const imageAlt = isDE ? epoch.imageAltDe : epoch.imageAltFr
+        const itemIndex = String(index + 1).padStart(2, '0')
 
         return (
           <Reveal key={epoch.id} className={`history-item${index % 2 === 1 ? ' is-reverse' : ''}`} delay={(index % 3) * 80}>
@@ -33,6 +34,9 @@ export default async function HistoryTimeline({ epochs }: HistoryTimelineProps) 
             </div>
 
             <div className="history-item__body">
+              <span className="history-item__index" aria-hidden="true">
+                {itemIndex}
+              </span>
               <p className="history-item__epoch">{label}</p>
               <h2 className="history-item__title">{title}</h2>
               <p className="history-item__text">{text}</p>
