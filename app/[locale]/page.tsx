@@ -35,7 +35,7 @@ export default async function HomePage({ params }: Props) {
           <Link href="/geschichte" className="home-teaser">
             <div className="home-teaser__media">
               <Image
-                src="/images/alasdair1907-lyon-7875644.jpg"
+                src="/images/brand/lyon-bollard-stonewall.png"
                 alt={homeT('historyTeaserAlt')}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -53,7 +53,7 @@ export default async function HomePage({ params }: Props) {
           <Link href="/kultur" className="home-teaser">
             <div className="home-teaser__media">
               <Image
-                src="/images/ludo-photos-abstract-4124262_1920.jpg"
+                src="/images/brand/lyon-bus-livery.png"
                 alt={homeT('cultureTeaserAlt')}
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"

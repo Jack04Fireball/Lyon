@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl'
 import { Link } from '@/lib/i18n/navigation'
-import Logo from './Logo'
+import BrandLockup from './BrandLockup'
 
 export default function Footer() {
   const t = useTranslations('Footer')
@@ -9,7 +9,7 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="shell footer-grid">
         <div className="footer-brand">
-          <Logo size={28} />
+          <BrandLockup markSize={28} invert />
           <p className="footer-tagline">{t('tagline')}</p>
         </div>
 

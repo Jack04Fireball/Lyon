@@ -1,29 +1,30 @@
 import type { Metadata } from 'next'
-import { Spectral, Inter } from 'next/font/google'
+import { Cormorant_Garamond, Sora } from 'next/font/google'
 import './globals.css'
 
-const spectral = Spectral({
+const display = Cormorant_Garamond({
   subsets: ['latin'],
-  weight: ['300', '400', '600'],
+  weight: ['400', '500', '600', '700'],
   style: ['normal', 'italic'],
-  variable: '--font-spectral-var',
+  variable: '--font-display-var',
   display: 'swap',
 })
 
-const inter = Inter({
+const body = Sora({
   subsets: ['latin'],
-  variable: '--font-inter-var',
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-body-var',
   display: 'swap',
 })
 
 export const metadata: Metadata = {
-  title: 'Lyon',
-  description: 'Im Zusammenfluss entsteht Identität.',
+  title: 'Ville de Lyon',
+  description: 'Offizielles Portal der Ville de Lyon',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de" className={`${spectral.variable} ${inter.variable}`}>
+    <html lang="de" className={`${display.variable} ${body.variable}`}>
       <body>{children}</body>
     </html>
   )

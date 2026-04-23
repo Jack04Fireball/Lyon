@@ -24,7 +24,7 @@ export const events: LyonEvent[] = [
     month:    12,
     location: 'Ganz Lyon / Toute la ville',
     category: 'festival',
-    image:    '/images/ludo-photos-abstract-4124262_1920.jpg',
+    image:    '/images/brand/lyon-logo-surface-pink.png',
   },
   {
     id: 'nuits-fourviere',
@@ -36,7 +36,7 @@ export const events: LyonEvent[] = [
     month:    6,
     location: 'Théâtres Romains de Fourvière',
     category: 'festival',
-    image:    '/images/jimbochan-cathedral-2744937_1920.jpg',
+    image:    '/images/brand/lyon-signage-vieux-lyon.png',
   },
   {
     id: 'biennale-danse',
@@ -48,7 +48,7 @@ export const events: LyonEvent[] = [
     month:    9,
     location: 'Maison de la Danse',
     category: 'festival',
-    image:    '/images/roses_street-town-6820819_1920.jpg',
+    image:    '/images/brand/lyon-garbage-bags.png',
   },
   {
     id: 'musee-beaux-arts',
@@ -60,7 +60,7 @@ export const events: LyonEvent[] = [
     month:    1,
     location: 'Place des Terreaux',
     category: 'museum',
-    image:    '/images/22772072-city-6524326_1920.jpg',
+    image:    '/images/brand/lyon-logo-surface-blue.png',
   },
   {
     id: 'musee-gallo-romain',
@@ -72,7 +72,7 @@ export const events: LyonEvent[] = [
     month:    3,
     location: 'Colline de Fourvière',
     category: 'museum',
-    image:    '/images/twalmedia-basilica-2382830_1920.jpg',
+    image:    '/images/brand/lyon-bollard-stonewall.png',
   },
   {
     id: 'musee-confluence',
@@ -84,7 +84,7 @@ export const events: LyonEvent[] = [
     month:    4,
     location: 'Musée des Confluences',
     category: 'museum',
-    image:    '/images/dmz-lyon-1238709_1920.jpg',
+    image:    '/images/brand/lyon-bus-livery.png',
   },
   {
     id: 'opera-lyon',
@@ -96,7 +96,7 @@ export const events: LyonEvent[] = [
     month:    10,
     location: 'Opéra de Lyon, Place de la Comédie',
     category: 'concert',
-    image:    '/images/alasdair1907-lyon-7875644.jpg',
+    image:    '/images/brand/lyon-bike-marks.png',
   },
   {
     id: 'orchestre-national',
@@ -108,7 +108,7 @@ export const events: LyonEvent[] = [
     month:    11,
     location: 'Auditorium de Lyon',
     category: 'concert',
-    image:    '/images/tanao68-lyon-7117498_1920.jpg',
+    image:    '/images/brand/lyon-bus-livery.png',
   },
   {
     id: 'festival-jazz',
@@ -120,7 +120,7 @@ export const events: LyonEvent[] = [
     month:    7,
     location: 'Théâtre Antique de Vienne',
     category: 'concert',
-    image:    '/images/twalmedia-lyon-3598618_1920.jpg',
+    image:    '/images/brand/lyon-signage-vieux-lyon.png',
   },
   {
     id: 'theatre-celestins',
@@ -132,7 +132,7 @@ export const events: LyonEvent[] = [
     month:    9,
     location: 'Théâtre des Célestins',
     category: 'theater',
-    image:    '/images/ben_kerckx-flag-1004394_1920.jpg',
+    image:    '/images/brand/lyon-logo-surface-pink.png',
   },
   {
     id: 'maison-rouge',
@@ -144,7 +144,7 @@ export const events: LyonEvent[] = [
     month:    5,
     location: 'Maison de la Danse',
     category: 'theater',
-    image:    '/images/roses_street-town-6820819_1920.jpg',
+    image:    '/images/brand/lyon-garbage-bags.png',
   },
   {
     id: 'son-lumiere-fourviere',
@@ -156,7 +156,7 @@ export const events: LyonEvent[] = [
     month:    8,
     location: 'Basilique Notre-Dame de Fourvière',
     category: 'festival',
-    image:    '/images/jimbochan-cathedral-2744937_1920.jpg',
+    image:    '/images/brand/lyon-logo-surface-blue.png',
   },
   {
     id: 'foire-livre',
@@ -168,7 +168,7 @@ export const events: LyonEvent[] = [
     month:    3,
     location: 'Bron (Métropole de Lyon)',
     category: 'festival',
-    image:    '/images/22772072-city-6524326_1920.jpg',
+    image:    '/images/brand/lyon-bike-marks.png',
   },
   {
     id: 'cinema-lumiere',
@@ -180,7 +180,7 @@ export const events: LyonEvent[] = [
     month:    10,
     location: 'Institut Lumière & Cinémas de Lyon',
     category: 'festival',
-    image:    '/images/alasdair1907-lyon-7875644.jpg',
+    image:    '/images/brand/lyon-bollard-stonewall.png',
   },
 ]
 

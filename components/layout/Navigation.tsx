@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl'
 import { Link, usePathname } from '@/lib/i18n/navigation'
-import Logo from './Logo'
+import BrandLockup from './BrandLockup'
 import LanguageToggle from './LanguageToggle'
 
 export default function Navigation() {
@@ -12,8 +12,12 @@ export default function Navigation() {
   return (
     <header className="nav-shell">
       <div className="shell nav-inner">
+        <Link href="/" aria-label={t('home')} className="nav-brand">
+          <BrandLockup compact markSize={31} />
+        </Link>
+
         <nav className="nav-primary" aria-label="Primary">
-          <Link href="/" className={`nav-link nav-link--home${pathname === '/' ? ' nav-link--active' : ''}`}>
+          <Link href="/" className={`nav-link${pathname === '/' ? ' nav-link--active' : ''}`}>
             {t('home')}
           </Link>
           <Link href="/geschichte" className={`nav-link${pathname === '/geschichte' ? ' nav-link--active' : ''}`}>
@@ -26,9 +30,6 @@ export default function Navigation() {
 
         <div className="nav-meta">
           <LanguageToggle />
-          <Link href="/" aria-label={t('home')} className="nav-logo">
-            <Logo size={30} />
-          </Link>
         </div>
       </div>
     </header>
